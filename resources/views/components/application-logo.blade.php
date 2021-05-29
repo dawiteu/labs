@@ -1,0 +1,1 @@
+<img src="{{asset('img/def/logo.png')}} " alt="{{ env('APP_NAME') }}">
