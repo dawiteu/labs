@@ -12,7 +12,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     
                     <x-nav-link :href="route('home')">
                         {{ __('Home') }}
@@ -27,14 +27,18 @@
                         {{ __('Profil') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('user.create')"> 
+                        {{ __('Membre') }}
+                    </x-nav-link>
                     
-                        <x-nav-link :href="route('logout')" onclick="event.preventDefault();
-                        this.closest('form').submit();"> 
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
+
+                    <x-nav-link :href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="float:right;">   
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf        
                             {{ __('Log out') }}
-                        </form>
-                        </x-nav-link>
+                        </form>    
+                    </x-nav-link>
+                
                     
 
                 </div>
@@ -44,24 +48,14 @@
             
             <button class="flex flex-col items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                 <div class="flex flex-col bg-gray-300 p-1 rounded-md">
-                    <img src="{{ Auth::user()->image }} " alt="{{ Auth::user()->nom }} {{ Auth::user()->prenom }}" class="object-contain h-10">
+                    <img src="{{ asset(Auth::user()->image) }} " alt="{{ Auth::user()->nom }} {{ Auth::user()->prenom }}" class="object-contain h-10">
                     <p>{{ Auth::user()->nom }} {{ Auth::user()->prenom }} </p> 
-                    <p class="@switch ( Auth::user()->role->id ) 
-                                @case(1):
-                                    text-red-600
-                                    @break;
-                                @case(2):
-                                    text-yellow-600
-                                    @break;
-                                @case(2): 
-                                    text-blue-400
-                                    @break;
-                                @case(4):
-                                    text-purple-500
-                                    @break;
-                                @default:
-                                    text-purple-500
-                                    @break;
+                    <p class="
+                            @switch(Auth::user()->role->id) 
+                                @case(1)             text-red-600    @break
+                                @case(2)             text-yellow-600 @break
+                                @case(2)             text-blue-400   @break
+                                @default @case(4)    text-purple-500 @break
                             @endswitch
                         ">
                         {{ Auth::user()->role->nom }} 
