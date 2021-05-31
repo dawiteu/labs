@@ -27,7 +27,7 @@
                         {{ __('Profil') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('user.create')"> 
+                    <x-nav-link :href="route('user.all')" :active="request()->routeIs('user.all')"> 
                         {{ __('Membre') }}
                     </x-nav-link>
                     

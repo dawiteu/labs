@@ -14,3 +14,9 @@
 .colorpurple{
     color:purple;
 }
+
+.tableusers{
+    width:100%;
+    text-align: center;
+    border:1px solid #ccc; 
+}

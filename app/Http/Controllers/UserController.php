@@ -8,19 +8,28 @@ use App\Models\Poste;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function index(){ 
+        $users = User::paginate(15); 
+
+        return view('admin.user.index', compact('users')); 
+    }
+
     public function create(){
+        $this->authorize('isAdmin', Auth::user()); 
         $roles = Role::all(); 
         $postes = Poste::all();
         return view('admin.user.create', compact('roles', 'postes')); 
     }
 
     public function store(UserRequest $request){
+        $this->authorize('isAdmin', Auth::user()); 
         $newuser = new User(); 
 
         // ce qui viens de l'admin 

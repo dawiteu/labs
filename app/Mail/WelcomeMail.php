@@ -32,6 +32,7 @@ class WelcomeMail extends Mailable
     {
         return $this->from('noreply@labs-studio.com')
                     ->subject('Labs Studio: Inscription confirmation')
-                    ->markdown('mail.welcomemail');
+                    ->markdown('mail.welcomemail')
+                    ->with('pass', $this->pass);
     }
 }
