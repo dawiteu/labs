@@ -1,3 +1,16 @@
 .navlink:hover{ color:purple;  }
 
 .activelink{ color:purple; background-color: #2BE6AB; }
+
+.bglightblue{
+    background-color: #2BE6AB;
+}
+.collightblue{ 
+    color:#2BE6AB; 
+}
+.bgpurple{
+    background-color: purple;
+}
+.colorpurple{
+    color:purple;
+}
