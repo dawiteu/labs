@@ -22,18 +22,33 @@ class UserSeeder extends Seeder
         $prenom = "Dawid";
 
         DB::table('users')->insert([
-            "nom"               => $nom,
-            "prenom"            => $prenom,
-            "email"             => $email, 
-            "email_verified_at" => now(), 
-            "password"          => Hash::make('admin1'), 
-            "image"             => "img/def/noav2.png", 
-            "description"       => "Le boss des boss's... le Président quoi.",
-            "role_id"           => 1, // le super admin  
-            "poste_id"          => 1,
-            "active"            => 1, // l'admin est dirrectement activé
-            "created_at"        => now(), 
-            // clefs etrangeres:
+            [
+                "nom"               => $nom,
+                "prenom"            => $prenom,
+                "email"             => $email, 
+                "email_verified_at" => now(), 
+                "password"          => Hash::make('admin1'), 
+                "image"             => "img/def/noav2.png", 
+                "description"       => "Le boss des boss's... le Président quoi.",
+                "role_id"           => 1, // le super admin  
+                "poste_id"          => 1,
+                "active"            => 1, // l'admin est dirrectement activé
+                "created_at"        => now(), 
+            ], 
+
+            // [
+            //     "nom"               => "El",
+            //     "prenom"            => "Ayoub",
+            //     "email"             => "a@youb.com", 
+            //     "email_verified_at" => now(), 
+            //     "password"          => Hash::make('admin1'), 
+            //     "image"             => "img/def/noav2.png", 
+            //     "description"       => "Webmaster (Gestion du site)",
+            //     "role_id"           => 2, // le webmaster  
+            //     "poste_id"          => 1,
+            //     "active"            => 1,
+            //     "created_at"        => now(), 
+            // ]
         ]);
 
         //Mail::send('mail.adminregister', (new AdminRegisterSender($email)));
