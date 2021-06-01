@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Str;
 class UserSeeder extends Seeder
 {
     /**
@@ -35,6 +35,7 @@ class UserSeeder extends Seeder
                 "active"            => 1, // l'admin est dirrectement activé
                 "deleted"           => 0, 
                 "created_by"        => 1, // le premier s'est fait lui meme. 
+                "login_token"       => Hash::make(Str::random(9)),
                 "created_at"        => now(), 
             ], 
 

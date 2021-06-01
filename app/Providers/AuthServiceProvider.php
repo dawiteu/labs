@@ -24,9 +24,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        //pour les controleurs 
         Gate::define('isAdmin', function($online) {
             return $online->role_id == 1; 
+        });
+
+        Gate::define('isWebMaster', function($online) {
+            return $online->role_id == 1 || $online->role_id == 2; 
         });
     }
 }

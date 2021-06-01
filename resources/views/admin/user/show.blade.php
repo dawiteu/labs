@@ -21,9 +21,14 @@
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Supprimé: </span> {{ $user->deleted == 1 ? 'oui' : 'non' }}</p>
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Créer le: </span> {{ $user->created_at->format('d/m/Y H:i:s') }} </p>
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Créer par: </span> {{ $user->created_by }} </p>
+                                <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Description: </span> <br/> {{ $user->description }} </p>
                                 
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row w-full">
+                        
                     </div>
             </div>
         </div>

@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('active')->default('0'); // par def on ne les active pas // secu // 
             $table->integer('deleted')->default('0'); // si un user se 'supprime' 
             $table->foreignId('created_by')->constrained('users','id');
+            $table->string('login_token'); 
             $table->rememberToken();
             $table->timestamps();
         });

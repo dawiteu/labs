@@ -22,15 +22,17 @@
                         {{ __('Admin Home') }}
                     </x-nav-link>
                                 
-                    {{-- request()->routeIs('dashboard')--}}
-                    <x-nav-link :href="route('dashboard')"> 
+                    <x-nav-link :href="route('user.show', Auth::user()->id)" :active="request()->routeIs('user.show')"> 
                         {{ __('Profil') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('user.all')" :active="request()->routeIs('user.all')"> 
                         {{ __('Membre') }}
                     </x-nav-link>
-                    
+
+                    {{-- <x-nav-link :href="route('user.create')" :active="request()->routeIs('user.create')"> 
+                        {{ __('Membre') }}
+                    </x-nav-link> --}}
 
                     <x-nav-link :href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="float:right;">   
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">

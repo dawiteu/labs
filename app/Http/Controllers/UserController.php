@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Mail\LoginMail;
 use App\Mail\WelcomeMail;
 use App\Models\Poste;
 use App\Models\Role;
@@ -16,7 +17,7 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function index(){ 
-        $users = User::paginate(15); 
+        $users = User::paginate(15)->where('deleted', '0'); 
 
         return view('admin.user.index', compact('users')); 
     }
@@ -44,9 +45,10 @@ class UserController extends Controller
         $newuser->description = ""; 
         $newuser->active = 0; 
         $newuser->deleted = 0; 
+        $newuser->created_by = Auth::user()->id; 
         $pass = Str::random(8);
         $newuser->password = Hash::make($pass); 
-
+        $newuser->login_token = Hash::make(Str::random(9));
         $newuser->save(); 
         Mail::to($newuser->email)->send(new WelcomeMail($newuser, $pass));
         return redirect()->route('dashboard')->with('success', 'User bien créer et mail envoyé.')->withErrors('error', 'Tout ne cest pas bien passé'); 
@@ -54,5 +56,28 @@ class UserController extends Controller
 
     public function show(User $user){ 
         return view('admin.user.show', compact('user')); 
+    }
+
+    public function actlist(){
+        //user to activate
+        $ustoacts = User::all()->where('active', '0')->where('deleted', '0'); 
+        return view('admin.user.toactivate', compact('ustoacts'));
+    }
+
+    public function actuser(User $user, $proced){
+
+        $this->authorize('isWebMaster', Auth::user()); 
+
+        if($proced == "act" || $proced == "ref"){
+            $do = ( $proced == "act" ? '1' : '0');  
+            $user->active = $do; 
+            $do == 0 ? $user->deleted = 1 : 0; // s'il est refusé on lui bloque l'access. 
+            $user->save();
+            Mail::to($user->email)->send(new LoginMail($user));
+            return redirect()->route('user.act')->with('success', 'User activé');
+        }else{
+            return redirect()->route('user.act')->with('error','Opération non reconnue.');
+        }
+        
     }
 }
