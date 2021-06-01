@@ -48,7 +48,7 @@ class UserController extends Controller
         $newuser->created_by = Auth::user()->id; 
         $pass = Str::random(8);
         $newuser->password = Hash::make($pass); 
-        $newuser->login_token = Hash::make(Str::random(9));
+        $newuser->login_token = Str::random(9);
         $newuser->save(); 
         Mail::to($newuser->email)->send(new WelcomeMail($newuser, $pass));
         return redirect()->route('dashboard')->with('success', 'User bien créer et mail envoyé.')->withErrors('error', 'Tout ne cest pas bien passé'); 
@@ -71,10 +71,15 @@ class UserController extends Controller
         if($proced == "act" || $proced == "ref"){
             $do = ( $proced == "act" ? '1' : '0');  
             $user->active = $do; 
-            $do == 0 ? $user->deleted = 1 : 0; // s'il est refusé on lui bloque l'access. 
-            $user->save();
-            Mail::to($user->email)->send(new LoginMail($user));
-            return redirect()->route('user.act')->with('success', 'User activé');
+            if($do == 1){ 
+                Mail::to($user->email)->send(new LoginMail($user));
+                $user->save();
+                return redirect()->route('user.act')->with('success', 'User activé');
+            }else if($do == 0){
+                $user->deleted = 1;
+                $user->save();
+                return redirect()->route('user.act')->with('error', 'User deactivé et bloqué.');
+            }
         }else{
             return redirect()->route('user.act')->with('error','Opération non reconnue.');
         }

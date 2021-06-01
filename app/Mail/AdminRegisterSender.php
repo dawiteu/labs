@@ -10,16 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class AdminRegisterSender extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data; 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //$this->mail = $mail; 
-        //dd($this->email); 
+        $this->mail = $data;
     }
 
     /**
@@ -29,8 +28,11 @@ class AdminRegisterSender extends Mailable
      */
     public function build()
     {
-        return $this->from(('APP_NAME') . " Welcome Mail")
+        //dd($this->mail->token); 
+
+        return $this->from("noreply@labs-studio.com")
                     ->subject('Bienvenu sur Labs Master')
+                    ->with('login_token', $this->mail->token)
                     ->markdown('mail.adminregister');
     }
 }

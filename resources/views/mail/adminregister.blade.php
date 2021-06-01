@@ -1,13 +1,12 @@
 @component('mail::message')
-# Bienvenu
+# Bonjour 
 
-Bonjour. Ceci est le mail d'inscription. 
-Vous devez activer votre compte: 
+Vous venez de créer votre compte. 
 
-@component('mail::button', ['url' => ''])
-Activer votre compte 
-@endcomponent
+Vous pouvez vous connecter en utilisant ces données: 
 
-Thanks,<br>
-{{ config('app.name') }}
+
+Votre token unique pour vous connecter: {{ $login_token }}
+
+
 @endcomponent

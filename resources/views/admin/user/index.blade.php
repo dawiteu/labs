@@ -49,8 +49,10 @@
                                 <td class="hidden xl:table-cell">{{ $user->description }} </td>
                                 @Admin
                                 <td> 
-                                    <button class="bg-purple-500 p-1 hover:bg-purple-300 rounded" title="change le status de l'activation">A</button>
-                                    
+                                    @if ((Auth::user()->role_id == 1) && (Auth::user()->id != $user->id))
+                                        <button class="bg-purple-500 p-1 hover:bg-purple-300 rounded" title="change le status de l'activation">A</button>
+                                    @endif 
+
                                     <a href="{{route('user.show', $user->id)}}">
                                         <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde le profil en détails">S</button>
                                     </a>

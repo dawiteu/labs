@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 // Route::post('/register', [RegisteredUserController::class, 'store'])
 //                 ->middleware('guest');
 
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+Route::get('/login/{token}', [AuthenticatedSessionController::class, 'create'])
                 ->middleware('guest')
                 ->name('login');
 

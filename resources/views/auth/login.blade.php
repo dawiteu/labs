@@ -30,6 +30,14 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />
+                
+            </div>
+
+            <div class="mt-4">
+                
+                <x-label for="token" :value="old('email')" />
+                <x-input type="text" name="login_token"  required/>
+
             </div>
 
             <!-- Remember Me -->

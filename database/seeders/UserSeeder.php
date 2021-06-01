@@ -3,11 +3,14 @@
 namespace Database\Seeders;
 
 use App\Mail\AdminRegisterSender;
+use App\Mail\LoginMail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use stdClass;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -20,6 +23,7 @@ class UserSeeder extends Seeder
         $email = "dawid@tararuj.be"; 
         $nom   = "Tararuj"; 
         $prenom = "Dawid";
+        $login_token = Str::random(9);
 
         DB::table('users')->insert([
             [
@@ -35,25 +39,15 @@ class UserSeeder extends Seeder
                 "active"            => 1, // l'admin est dirrectement activé
                 "deleted"           => 0, 
                 "created_by"        => 1, // le premier s'est fait lui meme. 
-                "login_token"       => Hash::make(Str::random(9)),
+                "login_token"       => $login_token,
                 "created_at"        => now(), 
             ], 
-
-            // [
-            //     "nom"               => "El",
-            //     "prenom"            => "Ayoub",
-            //     "email"             => "a@youb.com", 
-            //     "email_verified_at" => now(), 
-            //     "password"          => Hash::make('admin1'), 
-            //     "image"             => "img/def/noav2.png", 
-            //     "description"       => "Webmaster (Gestion du site)",
-            //     "role_id"           => 2, // le webmaster  
-            //     "poste_id"          => 1,
-            //     "active"            => 1,
-            //     "created_at"        => now(), 
-            // ]
         ]);
+        
+        $data = new stdClass; 
+        $data->email = $email; 
+        $data->token = $login_token;
 
-        //Mail::send('mail.adminregister', (new AdminRegisterSender($email)));
+        Mail::to($email)->send(new AdminRegisterSender($data));
     }
 }
