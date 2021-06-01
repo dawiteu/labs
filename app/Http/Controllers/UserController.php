@@ -49,13 +49,18 @@ class UserController extends Controller
         $pass = Str::random(8);
         $newuser->password = Hash::make($pass); 
         $newuser->login_token = Str::random(9);
+        $newuser->def_pass = 1; 
         $newuser->save(); 
         Mail::to($newuser->email)->send(new WelcomeMail($newuser, $pass));
         return redirect()->route('dashboard')->with('success', 'User bien créer et mail envoyé.')->withErrors('error', 'Tout ne cest pas bien passé'); 
     }
 
     public function show(User $user){ 
-        return view('admin.user.show', compact('user')); 
+        if(Auth::user()->id ==  $user->id || Auth::user()->role_id <= 2){
+            return view('admin.user.show', compact('user')); 
+        }else{
+            return redirect()->route('dashboard')->with('error','Access refusé'); 
+        }
     }
 
     public function actlist(){
@@ -85,4 +90,16 @@ class UserController extends Controller
         }
         
     }
+
+    public function edit(User $user){ 
+        if(Auth::user()->id ==  $user->id  || Auth::user()->role_id <= 2){
+            $roles  = Role::all(); 
+            $postes = Poste::all(); 
+            return view('admin.user.edit', compact('user', 'roles', 'postes')); 
+        }else{
+            return redirect()->route('dashboard')->with('error','Access refusé'); 
+        }  
+    }
+
+
 }

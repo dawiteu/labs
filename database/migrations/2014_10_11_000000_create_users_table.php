@@ -26,8 +26,9 @@ class CreateUsersTable extends Migration
             $table->foreignId('poste_id')->constrained('postes', 'id');
             $table->integer('active')->default('0'); // par def on ne les active pas // secu // 
             $table->integer('deleted')->default('0'); // si un user se 'supprime' 
-            $table->foreignId('created_by')->constrained('users','id');
+            $table->foreignId('created_by')->constrained('users','id'); // par qui il a ete cree? pas de soucis avec cascade del car AUCUN utilisateur est drop de la db
             $table->string('login_token'); 
+            $table->string('def_pass'); 
             $table->rememberToken();
             $table->timestamps();
         });

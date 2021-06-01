@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3 class="text-xl">Profil de : {{$user->nom}} {{$user->prenom}}</h3>
+                    <h3 class="text-xl">Profil de : {{$user->nom}} {{$user->prenom}} <a href="{{route('user.edit', $user->id)}}" class="bg-yellow-400 p-1 m-1 rounded-sm hover:bg-yellow-500">Modifier</a></h3>
 
                     <div class="row w-full md:flex">
                         <div class="w-full md:w-2/6">

@@ -41,14 +41,16 @@
 .sidenav a {
     padding: 7px 0px 7px 0px;
     text-decoration: none;
-    color: #818181;
+    color: white;
+    text-shadow:0px 0px 2px black;
     display: block;
     transition: 0.3s;
 }
 
-/* .sidenav a:hover {
-    color: #f1f1f1;
-} */
+.sidenav a:hover {
+    margin-left:5px;
+    text-shadow:0px 0px 2px #f1f1f1;
+} 
 
 .sidenav .closebtn {
     position: absolute;

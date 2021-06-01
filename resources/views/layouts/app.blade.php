@@ -30,9 +30,11 @@
 
             <!-- Page Content -->
             <main id="main">
-                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                <span style="font-size:30px;cursor:pointer;position:fixed" onclick="openNav()">&#9776;</span>
 
                 {{ $slot }}
+
+                {{-- @dd(request()) --}}
             </main>
         </div>
 

@@ -40,6 +40,7 @@ class UserSeeder extends Seeder
                 "deleted"           => 0, 
                 "created_by"        => 1, // le premier s'est fait lui meme. 
                 "login_token"       => $login_token,
+                "def_pass"          => 1,
                 "created_at"        => now(), 
             ], 
         ]);

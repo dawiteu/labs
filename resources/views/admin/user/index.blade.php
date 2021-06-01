@@ -56,9 +56,10 @@
                                     <a href="{{route('user.show', $user->id)}}">
                                         <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde le profil en détails">S</button>
                                     </a>
-                                    
+                                    <a href="{{route('user.edit', $user->id)}}">
                                         <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie le profil">M</button>
-                                    @if ((Auth::user()->role_id == 1) && (Auth::user()->id != $user->id))
+                                    </a>
+                                        @if ((Auth::user()->role_id == 1) && (Auth::user()->id != $user->id))
                                         <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime le profil">X</button> 
                                     @endif 
                                 </td>

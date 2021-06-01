@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -32,5 +33,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isWebMaster', function($online) {
             return $online->role_id == 1 || $online->role_id == 2; 
         });
+
+        Gate::define('isAdminORreal', function($online, $user){
+            //dd(Auth::user()->id, $online->id, $user->id); 
+            //return ($online->role_id == 1 || $online->role_id == 2) || ($online == $user); 
+        }); 
     }
 }

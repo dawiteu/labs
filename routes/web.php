@@ -26,21 +26,18 @@ Route::get('/admin', function () {
 // 
 Route::middleware(['auth'])->group(function () {
 
-    // + web 
-    Route::get('/admin/user/all', [UserController::class, 'index'])->name('user.all'); 
-
-    // ?? 
-    Route::get('/admin/user/add', [UserController::class, 'create'])->name('user.create'); 
-    Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store'); 
     
-    // tout les users peuvent se consulté 
-    Route::get('/admin/user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::middleware(['webmaster'])->group(function () {
+        Route::get('/admin/user/all', [UserController::class, 'index'])->name('user.all'); 
+        Route::get('/admin/user/add', [UserController::class, 'create'])->name('user.create'); 
+        Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store'); 
+        Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
+        Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
+    });
+        
+        Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
+        Route::get('/admin/user/{user}', [UserController::class, 'show'])->name('user.show');
 
-    // mid auth ET webM 
-    Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
-
-    Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
-    
 });
 
 

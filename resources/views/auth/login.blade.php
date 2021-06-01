@@ -35,7 +35,7 @@
 
             <div class="mt-4">
                 
-                <x-label for="token" :value="old('email')" />
+                <x-label for="login_token" :value="old('login_token')" />
                 <x-input type="text" name="login_token"  required/>
 
             </div>

@@ -84,7 +84,7 @@
                                 <div class="col w-3/6  flex justify-center items-center">
                                     <select name="poste" class="w-full" >
                                         @foreach ($postes as $poste)
-                                            <option value="{{$poste->id}}" {{ $role->id == old('poste') ? 'selected' : ''}}>{{$poste->nom}}</option>
+                                            <option value="{{$poste->id}}" {{ $poste->id == old('poste') ? 'selected' : ''}}>{{$poste->nom}}</option>
                                         @endforeach
                                     </select>
                                 </div>
