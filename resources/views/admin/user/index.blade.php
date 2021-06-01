@@ -8,17 +8,17 @@
                         @Admin
                             <div class="flex flex-wrap justify-center md:justify-start">
                                 <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 m-2 p-1 rounded-sm">Ajouter un membre</a>
-                            
+
                                 <a href="{{route('user.act')}}" class="bg-purple-400 m-2 hover:bg-purple-600 p-1 rounded-sm">Liste d'activation</a>
-                            </div>
+                            </div> 
                             <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left rounded">
                                 <legend class="underline">!! Notes importante:</legend>
                                 <p><button readonly class="bg-purple-500 p-1 m-1  rounded">A</button> -  Change le status de l'activation</p>
                                 <p><button class="bg-green-500 p-1 m-1  rounded">S</button> - Regarde le profil en détails </p>
                                 <p><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button> - Modifie le profil</p>
                                 <p><button class="bg-red-500 p-1 m-1  rounded" title="">X</button> - Supprime le profil</p>
-                            </fieldset>
-                        @endAdmin
+                            </fieldset> 
+                        @endAdmin  
                     </h3> 
                     
                     <table class="tableusers">

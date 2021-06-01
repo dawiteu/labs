@@ -41,6 +41,12 @@
             
             {{ __('Gestion membres') }}
         </x-nav-link>
+
+        <x-nav-link :href="route('newsletter.all')" :active="request()->is('/admin/newsletter/all')"> 
+            
+            {{ __('Gestion Newsletter') }}
+        </x-nav-link>
+        
     @endWebmaster
 
         <x-nav-link :href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">   

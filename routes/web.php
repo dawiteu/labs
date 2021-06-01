@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\UserController;
+use App\Models\Newsletter;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store'); 
         Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
         Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
+                
+        Route::get('/admin/newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.all');
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 

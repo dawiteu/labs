@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Services;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
+        
+        Services::factory(10)->create();
     }
 }

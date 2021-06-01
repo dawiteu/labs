@@ -32,6 +32,9 @@
             <main id="main">
                 <span style="font-size:30px;cursor:pointer;position:fixed" onclick="openNav()">&#9776;</span>
 
+                @include('layouts.flash') 
+                
+
                 {{ $slot }}
 
                 {{-- @dd(request()) --}}
