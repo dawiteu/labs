@@ -33,6 +33,8 @@ class UserSeeder extends Seeder
                 "role_id"           => 1, // le super admin  
                 "poste_id"          => 1,
                 "active"            => 1, // l'admin est dirrectement activé
+                "deleted"           => 0, 
+                "created_by"        => 1, // le premier s'est fait lui meme. 
                 "created_at"        => now(), 
             ], 
 

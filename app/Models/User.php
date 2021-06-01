@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,4 +53,9 @@ class User extends Authenticatable
     public function poste(){
         return $this->belongsTo(Poste::class); 
     }
+
+    public function created_by(){
+        return $this->belongsTo(User::class); 
+    }
+
 }

@@ -43,17 +43,16 @@ class UserController extends Controller
 
         $newuser->description = ""; 
         $newuser->active = 0; 
+        $newuser->deleted = 0; 
         $pass = Str::random(8);
         $newuser->password = Hash::make($pass); 
 
-        //dd($newuser, $pass); 
         $newuser->save(); 
         Mail::to($newuser->email)->send(new WelcomeMail($newuser, $pass));
-            
         return redirect()->route('dashboard')->with('success', 'User bien créer et mail envoyé.')->withErrors('error', 'Tout ne cest pas bien passé'); 
+    }
 
-            // return redirect()->route('dashboard')->with('error', 'Tout ne cest pas bien passé'); 
-        
-        
+    public function show(User $user){ 
+        return view('admin.user.show', compact('user')); 
     }
 }

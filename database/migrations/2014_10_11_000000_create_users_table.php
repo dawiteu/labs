@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id')->constrained('roles', 'id'); 
             $table->foreignId('poste_id')->constrained('postes', 'id');
             $table->integer('active')->default('0'); // par def on ne les active pas // secu // 
+            $table->integer('deleted')->default('0'); // si un user se 'supprime' 
+            $table->foreignId('created_by')->constrained('users','id');
             $table->rememberToken();
             $table->timestamps();
         });

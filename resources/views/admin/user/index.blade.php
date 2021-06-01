@@ -35,7 +35,9 @@
                                 <td> 
                                     <button class="bg-purple-500 p-1 hover:bg-purple-300 rounded" title="change le status de l'activation">A</button>
                                     <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde le profil en détails">S</button>
-                                    <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie le profil">M</button>
+                                    <a href="{{route('user.show', $user->id)}}">
+                                        <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie le profil">M</button>
+                                    </a>
                                     <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime le profil">X</button> 
                                 </td>
                             </tr>
