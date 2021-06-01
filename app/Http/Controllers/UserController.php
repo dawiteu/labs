@@ -101,5 +101,38 @@ class UserController extends Controller
         }  
     }
 
+    public function update(Request $request, User $user){ 
+        //$this->authorize('adminoruser', Auth::user()); 
+        $request->validate([
+            "nom"       => "required", 
+            "prenom"    => "required", 
+            "email"     => "required"
+        ]);
+
+        $user->nom      = $request->nom; 
+        $user->prenom   = $request->prenom; 
+        $user->email    = $request->email; 
+
+        if($request->has('role')){
+            $user->role_id = $request->role; 
+        }
+        if($request->has('poste')){
+            $user->poste_id = $request->role;
+        }  
+
+        if($request->file('newimage') != NULL){
+            $request->file('newimage')->storePublicly('img/user/','public');
+            $user->image = "img/user/". $request->file('newimage')->hashName();
+        }
+
+        if(!empty($request->input('description'))){
+            $user->description = $request->description; 
+        }
+
+        $user->save();
+
+        return redirect()->route('dashboard')->with('success', 'Modifications bien enregistrées'); 
+    }
+
 
 }

@@ -6,19 +6,20 @@
                     <h3 class="text-xl m-4 text-center md:text-left">
                         Liste de tous les membres <br/>
                         @Admin
-                            <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 p-1 rounded-sm">Ajouter un membre</a>
+                            <div class="flex flex-wrap justify-center md:justify-start">
+                                <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 m-2 p-1 rounded-sm">Ajouter un membre</a>
                             
-                            <a href="{{route('user.act')}}" class="bg-purple-400 hover:bg-purple-600 p-1 rounded-sm">Liste d'activation</a>
-
-                            <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left">
+                                <a href="{{route('user.act')}}" class="bg-purple-400 m-2 hover:bg-purple-600 p-1 rounded-sm">Liste d'activation</a>
+                            </div>
+                            <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left rounded">
                                 <legend class="underline">!! Notes importante:</legend>
-                                <p><button readonly class="bg-purple-500 p-1 m-1 hover:bg-purple-300 rounded">A</button> -  Change le status de l'activation</p>
-                                <p><button class="bg-green-500 p-1 m-1 hover:bg-green-300 rounded">S</button> - Regarde le profil en détails </p>
-                                <p><button class="bg-yellow-500 p-1 m-1 hover:bg-yellow-300 rounded" title="">M</button> - Modifie le profil</p>
-                                <p><button class="bg-red-500 p-1 m-1 hover:bg-red-300 rounded" title="">X</button> - Supprime le profil</p>
+                                <p><button readonly class="bg-purple-500 p-1 m-1  rounded">A</button> -  Change le status de l'activation</p>
+                                <p><button class="bg-green-500 p-1 m-1  rounded">S</button> - Regarde le profil en détails </p>
+                                <p><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button> - Modifie le profil</p>
+                                <p><button class="bg-red-500 p-1 m-1  rounded" title="">X</button> - Supprime le profil</p>
                             </fieldset>
                         @endAdmin
-                    </h3>
+                    </h3> 
                     
                     <table class="tableusers">
                         <tr>

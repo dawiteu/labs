@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
+        Route::post('/admin/user/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware(['adminoruser']); 
+        
         Route::get('/admin/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 });

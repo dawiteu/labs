@@ -5,9 +5,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Auth::user()->role_id <= 2 || Auth::user()->id == $user->id)
                         <h3 class="text-xl m-4 text-center md:text-left"> Modification de {{ $user->prenom }} {{$user->nom }} </h3>
-                        <form action="" method="POST">
+                        <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
+                            {{-- @method('PUT') --}}
 
                         <div class="row flex flex-wrap">
                                     {{-- Form nom de famille:  --}}
@@ -61,8 +61,8 @@
                                 </div>
                             </div>
 
-                            {{-- form Role user  --}}
                             @Admin
+                            {{-- form Role user  --}}
                             <div class="w-full md:w-3/6 flex flex-wrap">
                                 <div class="col w-3/6  flex justify-center items-center">
                                     <label for="role">Role:</label> 
@@ -93,17 +93,55 @@
                                 {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
                             </div>
                             @endAdmin
+
+                            {{-- Image  --}}
                             <div class="w-full md:w-3/6 flex flex-wrap mt-2">
                                 <div class="col w-3/6  flex justify-center items-center">
                                     <label for="image">Image:</label> 
                                 </div>
+                                <div class="col w-3/6">
+                                    <div>
+                                        <img src="{{asset($user->image)}}" alt="avatar de {{$user->prenom}} {{$user->nom}}" class="bg-gray-300 rounded-md">
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="strong">Ne pas uploader si vous ne voulez pas changer la photo.</span>
+                                        <input type="file" name="newimage" />
+                                    </div>
+                                </div>
+                                {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
+                            </div>
+
+                            {{-- Desctripion --}}
+
+                            <div class="w-full md:w-3/6 flex flex-wrap mt-2">
                                 <div class="col w-3/6  flex justify-center items-center">
-                                    <img src="{{asset($user->image)}}" alt="avatar de {{$user->prenom}} {{$user->nom}}" class="bg-gray-300 rounded-md">
+                                    <label for="description">Description:</label> 
+                                </div>
+                                <div class="col w-3/6  flex justify-center items-center">
+                                    <textarea name="description" cols="100" rows="5" style="resize:none;">{{$user->description}}</textarea>
                                 </div>
                                 {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
                             </div>
 
 
+                            {{-- Deactivation --}}
+
+                            <div class="w-full md:w-3/6 flex flex-wrap mt-2">
+                                <div class="col w-3/6  flex justify-center items-center">
+                                    <label for="deact" class="md:m-10">Deactivez le compte:</label>  
+                                
+                                </div>
+                                <div class="col w-3/6 flex flex-col text-center justify-center items-center">
+                                    <span class="strong">il va falloir de nouveau l'activer avec l'email. <br/> 
+                                        Un nouveau token vous sera envoyé 
+                                    </span>
+                                    <select name="deact">
+                                        <option value="1">NON</option>
+                                        <option value="0">Oui</option>
+                                    </select>
+                                </div>
+                                {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
+                            </div>
 
                             {{-- Submit  --}}
                             <div class="w-full my-8 flex flex-wrap">

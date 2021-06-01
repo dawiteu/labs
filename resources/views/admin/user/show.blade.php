@@ -7,10 +7,14 @@
 
                     <div class="row w-full md:flex">
                         <div class="w-full md:w-2/6">
-                            <img src="{{asset($user->image)}}" alt="{{$user->nom}} {{$user->prenom}} - avatar" class="h-2/4 bg-gray-200 rounded mx-auto" />
+                            <img src="{{asset($user->image)}}" alt="{{$user->nom}} {{$user->prenom}} - avatar" class="h-2/4 bg-gray-200 rounded mx-auto object-contain" />
                         </div>
                         <div class="w-full md:w-4/6">
                             <div class="w-full">
+
+                                @if ( $user->active == 0)
+                                <p class="text-center text-red-500 font-bold ">Attention! ce compte n'est pas activé.</p>
+                                @endif
 
                                 @if ( $user->deleted == 1)
                                     <p class="text-center text-red-500 font-bold ">Attention! ce compte est bloqué.</p>
