@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UserController;
 use App\Models\Newsletter;
 use App\Models\User;
@@ -30,13 +31,19 @@ Route::middleware(['auth'])->group(function () {
 
     
     Route::middleware(['webmaster'])->group(function () {
+        // gestion user 
         Route::get('/admin/user/all', [UserController::class, 'index'])->name('user.all'); 
         Route::get('/admin/user/add', [UserController::class, 'create'])->name('user.create'); 
         Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store'); 
         Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
         Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
                 
+        // gestion newsletter 
         Route::get('/admin/newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.all');
+
+        //gestion services: 
+        Route::get('/admin/services/all', [ServicesController::class,'index'])->name('services.all'); 
+        Route::get('/admin/services/edit/{service}', [ServicesController::class,'edit'])->name('service.edit'); 
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 

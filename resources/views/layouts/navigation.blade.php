@@ -37,7 +37,7 @@
     </x-nav-link>
 
     @Webmaster
-        <x-nav-link :href="route('user.all')" :active="request()->is('/admin/user/*')"> 
+        <x-nav-link :href="route('user.all')" :active="request()->is('/admin/user/all')"> 
             
             {{ __('Gestion membres') }}
         </x-nav-link>
@@ -45,6 +45,11 @@
         <x-nav-link :href="route('newsletter.all')" :active="request()->is('/admin/newsletter/all')"> 
             
             {{ __('Gestion Newsletter') }}
+        </x-nav-link>
+
+        <x-nav-link :href="route('services.all')" :active="request()->is('/admin/services/all')"> 
+            
+            {{ __('Gestion Services') }}
         </x-nav-link>
         
     @endWebmaster

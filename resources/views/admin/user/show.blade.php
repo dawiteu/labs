@@ -19,7 +19,7 @@
                                 @if ( $user->deleted == 1)
                                     <p class="text-center text-red-500 font-bold ">Attention! ce compte est bloqué.</p>
                                 @endif
-                                
+
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Nom:</span> {{ $user->nom }}</p> 
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Prénom: </span>{{ $user->prenom }}</p> 
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Email: </span>{{ $user->email }}</p> 

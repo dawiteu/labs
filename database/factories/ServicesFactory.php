@@ -32,7 +32,7 @@ class ServicesFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition() 
     {
         return [
             "titre"         => $this->faker->catchPhrase(),
