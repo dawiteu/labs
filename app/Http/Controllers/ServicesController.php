@@ -19,6 +19,16 @@ class ServicesController extends Controller
         return view('admin.services.edit', compact('service', 'allservs')); 
     }
 
+    public function update(Request $request, Services $service){ 
+
+        $request->validate([
+            "icon" => "required",
+            "titre" => "required", 
+            "description" => "required|max:200"
+        ]);
+        
+    }
+
     public function searchicones(){
         $allservs = IconServiceProvider::allIcons();
         //Paginator::make(30, )

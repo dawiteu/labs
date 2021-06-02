@@ -12,10 +12,12 @@
                             <div class="flex justify-between">
                                 <label for="icone">Icon: </label>
                                 <a href="#" onClick="window.open('{{route('services.icones'),'Selection d\'icones - Labs-Studio.com',"height=200,width=200"}}').focus();return false;" class="text-blue-400 hover:text-blue-600 hover:no-underline underline text-right">Liste complète des icones.</a>
-                        
                             </div> 
                             
                             <input type="text" name="icon" value="{{$service->icone}}" id="setnewicon" />
+                            @error('icon')
+                                {{$message}}
+                            @enderror
                             </div>
                         <div class="mt-4 flex flex-col md:w-2/6">
                             <label for="titre">Titre:</label>

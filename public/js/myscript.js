@@ -19,8 +19,15 @@ $(function(){
     if($("#setnewicon")){ 
         window.onfocus = function() { 
             navigator.clipboard.readText().then(function(text){
-                $("#setnewicon").val(text);
-                $("#displnewicon").attr('class', text);
+                let auth = ["fas", "far", "fab"]; 
+                let parse = text.split(" "); 
+
+                if(parse){
+                    if(auth.includes(parse[0])){
+                        $("#setnewicon").val(text);
+                        $("#displnewicon").attr('class', text);
+                    }
+                }  
             });
         };
     };
