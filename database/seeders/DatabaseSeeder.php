@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Services;
+use App\Models\Testimontial;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
         
         Services::factory(10)->create();
+        Testimontial::factory(10)->create();
     }
 }

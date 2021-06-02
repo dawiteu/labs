@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TestimontialController;
 use App\Http\Controllers\UserController;
 use App\Models\Newsletter;
+use App\Models\Testimontial;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
     
     Route::middleware(['webmaster'])->group(function () {
-        // gestion user 
+        // gestion user --> sera que pour le 'grand' admin (surtout l'ajout, l'accept c'est okpour le wemB);
         Route::get('/admin/user/all', [UserController::class, 'index'])->name('user.all'); 
         Route::get('/admin/user/add', [UserController::class, 'create'])->name('user.create'); 
         Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store'); 
@@ -44,7 +46,17 @@ Route::middleware(['auth'])->group(function () {
         //gestion services: 
         Route::get('/admin/services/all', [ServicesController::class,'index'])->name('services.all'); 
         Route::get('/admin/services/edit/{service}', [ServicesController::class,'edit'])->name('service.edit'); 
-        Route::get('/admin/services/icones', [ServicesController::class,'searchicones'])->name('services.icones'); 
+        Route::put('/admin/services/update/{service}', [ServicesController::class, 'update'])->name('service.update'); 
+        Route::post('/admin/services/del/{service}', [ServicesController::class, 'destroy'])->name('service.del');
+        Route::post('/admin/services/store', [ServicesController::class, 'store'])->name('service.store'); 
+
+        Route::get('/admin/services/icones', [ServicesController::class,'searchicones'])->name('services.icones');
+        Route::get('/admin/services/create', [ServicesController::class,'create'])->name('service.create');  
+
+        //testimontials: 
+
+        Route::get('/admin/testimontials/all', [TestimontialController::class,'index'])->name('testimontial.all');
+
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 

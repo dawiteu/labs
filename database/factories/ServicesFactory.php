@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
         return [
             "titre"         => $this->faker->catchPhrase(),
             "description"   => $this->faker->text(200),  
+            "disabled"      => 0,
             "icone"         => IconServiceProvider::fontAwesomeIcon()
         ];
     }

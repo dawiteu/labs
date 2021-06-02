@@ -52,6 +52,11 @@
             {{ __('Gestion Services') }}
         </x-nav-link>
         
+        <x-nav-link :href="route('testimontial.all')" :active="request()->is('/admin/testimontial/all')"> 
+            
+            {{ __('Gestion Testimontial') }}
+        </x-nav-link>
+        
     @endWebmaster
 
         <x-nav-link :href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">   
