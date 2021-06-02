@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Services;
+use App\Providers\IconServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class ServicesController extends Controller
 {
@@ -13,6 +15,13 @@ class ServicesController extends Controller
     }
 
     public function edit(Services $service){
-        return view('admin.services.edit', compact('service')); 
+        $allservs = IconServiceProvider::allIcons();
+        return view('admin.services.edit', compact('service', 'allservs')); 
+    }
+
+    public function searchicones(){
+        $allservs = IconServiceProvider::allIcons();
+        //Paginator::make(30, )
+        return view('admin.services.icones', compact('allservs')); 
     }
 }

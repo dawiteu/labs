@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         //gestion services: 
         Route::get('/admin/services/all', [ServicesController::class,'index'])->name('services.all'); 
         Route::get('/admin/services/edit/{service}', [ServicesController::class,'edit'])->name('service.edit'); 
+        Route::get('/admin/services/icones', [ServicesController::class,'searchicones'])->name('services.icones'); 
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
