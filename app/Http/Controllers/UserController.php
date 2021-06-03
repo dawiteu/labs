@@ -114,10 +114,11 @@ class UserController extends Controller
         $user->email    = $request->email; 
 
         if($request->has('role')){
+            //dd($user->role_id, $request->role); 
             $user->role_id = $request->role; 
         }
         if($request->has('poste')){
-            //dd('il y a un poste');
+            //dd($user->poste, $request->poste); 
             $user->poste_id = $request->role;
         }  
 

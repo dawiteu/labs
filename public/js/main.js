@@ -36,8 +36,12 @@ function responsive() {
 	Hero Section
 --------------------*/
 function heroSection() {
+	// check who is prioritary: 
+	let prior; 
+
+
 	//Slide item bg image.
-	$('.hero-item').each(function() {
+	$('.hero-item').each(function(i,e) {
 		var image = $(this).data('bg');
 
 		$(this).css({
@@ -46,6 +50,10 @@ function heroSection() {
 			'background-repeat' : 'no-repeat',
 			'background-position': 'center bottom'
 		});
+
+		if( $(e).attr('data-prior') === 'oui'){
+			prior = i;
+		}
 
 	});
 	//slider auto height 
@@ -65,29 +73,25 @@ function heroSection() {
 		tick,
 		percentTime;
 
+
 	// Init the carousel
 	let heroslider = $('#hero-slider').owlCarousel({
-		//loop: true,
+		loop: true,
 		nav: true,
 		items: 1,
+		startPosition: prior,
 		autoHeight:true,
 		animateOut: 'fadeOut',
 		animateIn: 'fadeIn',
 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
 		onInitialized: progressBar,
 		onTranslated: moved,
-		onDrag: pauseOnDragging,
-		beforeInit : function(){  
-		 //set slide sort order with attribute data-sort  
-		 //Parameter elem pointing to $("#owl-demo")  
-			var elems = $('#owl-demo .item');  
-		 	elems.sort(function(a, b) {  
-	  		return a.getAttribute('data-order') > b.getAttribute('data-order')  
-		  	}).appendTo(elems.parent());  
-		}  
+		onDrag: pauseOnDragging, 
 	});
 
 	heroslider.on('changed.owl.carousel', function(event) {
+		console.log(prior); 
+		console.log( $("div[data-prior=non]")[0] ); //document.querySelector("div.owl-item.active").children
 		$("#cartext").html(document.querySelector("div.owl-item.active").firstChild.getAttribute('data-text')); 
 	})
 

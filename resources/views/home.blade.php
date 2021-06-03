@@ -21,14 +21,13 @@
     <div id="hero-slider" class="owl-carousel">
 
         @foreach ($carous as $car)
-                @if ($car->priority == 1)
-                    <div class="item hero-item item1" data-order="1" data-bg="{{asset($car->image)}}" data-text="{{$car->description}}"> </div>
-                @else
-                    <div class="item hero-item" data-order="2" data-bg="{{asset($car->image)}}" data-text="{{$car->description}}"> </div>
-                @endif
+            {{-- {{ dd($car->id, $car->priority) }} --}}
+                {{-- @if ($car->priority == 1) --}}
+                    <div class="item hero-item" id="f-{{$car->id}}" data-prior="{{$car->priority == 1 ? 'oui' : 'non'}}" data-bg="{{asset($car->image)}}" data-text="{{$car->description}}"> </div>
+                {{-- @else --}}
+                    {{-- <div class="item hero-item" data-bg="{{asset($car->image)}}" data-text="{{$car->description}}"> </div> --}}
+                {{-- @endif --}}
         @endforeach
-        
-        {{-- <div class="item  hero-item" data-bg="img/02.jpg"></div> --}}
     </div>
 </div>
 <!-- Intro Section -->
