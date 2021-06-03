@@ -47,8 +47,6 @@ function heroSection() {
 			'background-position': 'center bottom'
 		});
 
-		// $("#cartext").html( $(this).data('text') ); 
-
 	});
 	//slider auto height 
 	var iit = setInterval(slide_item, 1);
@@ -56,7 +54,6 @@ function heroSection() {
 	function slide_item() {
 		var bh = $('body').height();
 		$('.hero-item').height(bh);
-		//$("p#cartext").html($('.hero-item').data('text'));
 	}
 	slide_item();
 
@@ -70,7 +67,7 @@ function heroSection() {
 
 	// Init the carousel
 	let heroslider = $('#hero-slider').owlCarousel({
-		loop: true,
+		//loop: true,
 		nav: true,
 		items: 1,
 		autoHeight:true,
@@ -79,7 +76,15 @@ function heroSection() {
 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
 		onInitialized: progressBar,
 		onTranslated: moved,
-		onDrag: pauseOnDragging
+		onDrag: pauseOnDragging,
+		beforeInit : function(){  
+		 //set slide sort order with attribute data-sort  
+		 //Parameter elem pointing to $("#owl-demo")  
+			var elems = $('#owl-demo .item');  
+		 	elems.sort(function(a, b) {  
+	  		return a.getAttribute('data-order') > b.getAttribute('data-order')  
+		  	}).appendTo(elems.parent());  
+		}  
 	});
 
 	heroslider.on('changed.owl.carousel', function(event) {
