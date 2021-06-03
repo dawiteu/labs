@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             PosteSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            PagehomecarouselSeeder::class,
         ]);
         
         Services::factory(10)->create();

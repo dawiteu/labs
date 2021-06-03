@@ -5,6 +5,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-xl m-4 text-center md:text-left">
                         Liste de tous les membres <br/>
+                        {{-- {{ dd( request()->is('admin/user/*')  ? 'oui' : 'non' ) }} --}}
                         @Admin
                             <div class="flex flex-wrap justify-center md:justify-start">
                                 <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 m-2 p-1 rounded-sm">Ajouter un membre</a>

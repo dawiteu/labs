@@ -37,7 +37,7 @@ $(function(){
             if(conf){
                 navigator.clipboard.writeText(newicon);
     
-                let x =setTimeout(() => {
+                let x = setTimeout(() => {
                     if(navigator.clipboard.writeText(newicon)){
                         clearTimeout(x);
                         window.close();
@@ -53,13 +53,16 @@ $(function(){
                 console.log(text);
                 let auth = ["fas", "far", "fab"]; 
                 let parse = text.split(" "); 
+                setTimeout(async() =>  {
+                    if(parse){
+                        if(auth.includes(parse[0])){
+                            $("#setnewicon").val(text);
+                            $("#displnewicon").attr('class', text);
+                        }
+                    }  
+                }, 2000)
 
-                if(parse){
-                    if(auth.includes(parse[0])){
-                        $("#setnewicon").val(text);
-                        $("#displnewicon").attr('class', text);
-                    }
-                }  
+                
             });
         };
     };

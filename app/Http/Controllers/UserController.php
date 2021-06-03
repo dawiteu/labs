@@ -121,8 +121,8 @@ class UserController extends Controller
         }  
 
         if($request->file('newimage') != NULL){
-            $request->file('newimage')->storePublicly('img/user/','public');
-            $user->image = "img/user/". $request->file('newimage')->hashName();
+            $request->file('newimage')->storePublicly('img/team/','public');
+            $user->image = "img/team/". $request->file('newimage')->hashName();
         }
 
         if(!empty($request->input('description'))){

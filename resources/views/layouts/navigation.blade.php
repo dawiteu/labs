@@ -37,22 +37,21 @@
     </x-nav-link>
 
     @Webmaster
-        <x-nav-link :href="route('user.all')" :active="request()->is('/admin/user/all')"> 
-            
+        <x-nav-link :href="route('user.all')" :active="request()->is('admin/user/*')">
             {{ __('Gestion membres') }}
         </x-nav-link>
 
-        <x-nav-link :href="route('newsletter.all')" :active="request()->is('/admin/newsletter/all')"> 
+        <x-nav-link :href="route('newsletter.all')" :active="request()->is('admin/newsletter/*')"> 
             
             {{ __('Gestion Newsletter') }}
         </x-nav-link>
 
-        <x-nav-link :href="route('services.all')" :active="request()->is('/admin/services/all')"> 
+        <x-nav-link :href="route('services.all')" :active="request()->is('admin/services/*')"> 
             
             {{ __('Gestion Services') }}
         </x-nav-link>
         
-        <x-nav-link :href="route('testimontial.all')" :active="request()->is('/admin/testimontial/all')"> 
+        <x-nav-link :href="route('testimontial.all')" :active="request()->is('admin/testimontials/*')"> 
             
             {{ __('Gestion Testimontial') }}
         </x-nav-link>

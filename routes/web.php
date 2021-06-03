@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TestimontialController;
@@ -20,10 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// front 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/home', [FrontController::class, 'index'])->name('front.index'); 
+
+// back 
 Route::get('/admin', function () {
     return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -31,7 +36,6 @@ Route::get('/admin', function () {
 // 
 Route::middleware(['auth'])->group(function () {
 
-    
     Route::middleware(['webmaster'])->group(function () {
         // gestion user --> sera que pour le 'grand' admin (surtout l'ajout, l'accept c'est okpour le wemB);
         Route::get('/admin/user/all', [UserController::class, 'index'])->name('user.all'); 

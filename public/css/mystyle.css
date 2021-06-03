@@ -48,12 +48,12 @@
 }
 
 .sidenav a:hover {
-    margin-left:5px;
+    /* margin-left:5px; */
     text-shadow:0px 0px 2px #f1f1f1;
 } 
 
 .sidenav .closebtn {
-    position: absolute;
+    position: absolute!important;
     top: 0;
     right: 25px;
     font-size: 36px;
