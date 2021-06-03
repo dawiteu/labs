@@ -39,6 +39,7 @@ function heroSection() {
 	//Slide item bg image.
 	$('.hero-item').each(function() {
 		var image = $(this).data('bg');
+
 		$(this).css({
 			'background-image'  : 'url(' + image + ')',
 			'background-size'   : 'cover',
@@ -55,6 +56,7 @@ function heroSection() {
 	function slide_item() {
 		var bh = $('body').height();
 		$('.hero-item').height(bh);
+		//$("p#cartext").html($('.hero-item').data('text'));
 	}
 	slide_item();
 
@@ -67,7 +69,7 @@ function heroSection() {
 		percentTime;
 
 	// Init the carousel
-	$('#hero-slider').owlCarousel({
+	let heroslider = $('#hero-slider').owlCarousel({
 		loop: true,
 		nav: true,
 		items: 1,
@@ -79,6 +81,10 @@ function heroSection() {
 		onTranslated: moved,
 		onDrag: pauseOnDragging
 	});
+
+	heroslider.on('changed.owl.carousel', function(event) {
+		$("#cartext").html(document.querySelector("div.owl-item.active").firstChild.getAttribute('data-text')); 
+	})
 
 	// Init progressBar where elem is $("#owl-demo")
 	function progressBar(){    

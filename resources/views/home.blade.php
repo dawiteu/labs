@@ -8,7 +8,7 @@
     <div class="hero-content">
         <div class="hero-center">
             <img src="{{$logo}}" alt="" class="w-full">
-            <p id="cartext"></p>
+            <p id="cartext">Abc</p>
         </div>
     </div>
     <!-- slider -->

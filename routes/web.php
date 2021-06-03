@@ -22,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // front 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/home', [FrontController::class, 'index'])->name('front.index'); 
+Route::get('/', [FrontController::class, 'index'])->name('front.index'); 
 
 // back 
 Route::get('/admin', function () {
