@@ -11,7 +11,7 @@
 	<link href="{{ asset('img/favicon.ico') }}" rel="shortcut icon"/>
     <!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
-
+	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Stylesheets -->
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
