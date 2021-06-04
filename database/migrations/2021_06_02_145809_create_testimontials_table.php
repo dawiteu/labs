@@ -18,6 +18,7 @@ class CreateTestimontialsTable extends Migration
             $table->string('author'); 
             $table->string('author_image'); 
             $table->text('description'); 
+            $table->string('poste');
             $table->integer('disabled')->default(0);
             $table->timestamps();
         });

@@ -27,7 +27,7 @@ class PagehomeSeeder extends Seeder
             "btn1link"   => "#testimontials", 
             "imglink"    => "img/video.jpg", 
             "videolink"  => "https://www.youtube.com/watch?v=JgHfx2v9zOU", 
-            "t2"         => "", 
+            "t2"         => "WHAT OUR CLIENTS SAY", 
             "t3"         => "", 
             "btn2text"   => "browse", 
             "btn2link"   => "", 

@@ -94,5 +94,42 @@
 </div>
 <!-- About section end -->
 
+<!-- Testimonial section -->
+<div class="testimonial-section pb100">
+    <div class="test-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-4">
+                <div class="section-title left">
+                    <h2>{{ $homeinfo->t2 }} </h2>
+                </div>
+                {{-- {{ dd($testims) }} --}}
+                <div class="owl-carousel" id="testimonial-slide">
+                    @forelse ($testims as $test)
+                        <!-- single testimonial -->
+                        <div class="testimonial">
+                            <span>‘​‌‘​‌</span>
+                            <p>{{$test->description }} </p>
+                            <div class="client-info">
+                                <div class="avatar">
+                                    <img src="{{ asset($test->author_image) }} " alt="{{ $test->author }}">
+                                </div>
+                                <div class="client-name">
+                                    <h2>{{ $test->author }} </h2>
+                                    <p>{{ $test->poste}} </p>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        
+                    @endforelse
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial section end-->
+
 
 @endsection
