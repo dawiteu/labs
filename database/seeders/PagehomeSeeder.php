@@ -28,7 +28,7 @@ class PagehomeSeeder extends Seeder
             "imglink"    => "img/video.jpg", 
             "videolink"  => "https://www.youtube.com/watch?v=JgHfx2v9zOU", 
             "t2"         => "WHAT OUR CLIENTS SAY", 
-            "t3"         => "", 
+            "t3"         => "GET IN (THE LAB) AND SEE THE SERVICES", 
             "btn2text"   => "browse", 
             "btn2link"   => "", 
             "t4"         => "", 
