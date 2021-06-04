@@ -39,7 +39,8 @@
     <div class="card-section">
         <div class="container">
             <div class="row">
-                @forelse ($thservs as $serv)
+                {{ dd($rservices) }}
+                {{-- @forelse ($rservices as $serv)
                 <!-- single card -->
                     <div class="col-md-4 {{ $loop->iteration == 3 ? 'col-sm-12' : 'col-sm-6' }} ">
                         <div class="lab-card">
@@ -50,7 +51,7 @@
                             <p>{{ $serv->description }}</p>
                         </div>
                     </div>  
-                @endforeach
+                @endforeach --}}
             </div>
         </div>
     </div>
@@ -134,11 +135,11 @@
             <h2> {!! bbcodetitle($homeinfo->t3) !!} </h2>
         </div>
         <div class="row">
-            @forelse ($collection as $item)
+            {{-- @forelse ($collection as $item)
                 
             @empty
                 
-            @endforelse
+            @endforelse --}}
             <!-- single service -->
             <div class="col-md-4 col-sm-6">
                 <div class="service">
