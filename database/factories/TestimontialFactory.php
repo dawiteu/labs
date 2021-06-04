@@ -22,7 +22,7 @@ class TestimontialFactory extends Factory
      */
 
     public function randN(){
-         return "img/avatar/0".rand(1, 3).".jpg"; 
+            return "img/avatar/0".rand(1, 3).".jpg"; 
     }
 
     public function randPost(){
@@ -32,9 +32,6 @@ class TestimontialFactory extends Factory
     }
     public function definition()
     {
-        //$images = ["img/avatar/01.jpg", "img/avatar/02.jpg", "img/avatar/03.jpg"]; 
-
-        
 
         return [
             "author"        => $this->faker->firstName() . " " . $this->faker->lastName(), 

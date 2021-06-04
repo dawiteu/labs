@@ -38,20 +38,19 @@
     <!-- card section -->
     <div class="card-section">
         <div class="container">
-            <div class="row">
-                {{ dd($rservices) }}
-                {{-- @forelse ($rservices as $serv)
+            <div class="row" style="min-height:30vh;">
+                @forelse ($rservices[0] as $serv)
                 <!-- single card -->
-                    <div class="col-md-4 {{ $loop->iteration == 3 ? 'col-sm-12' : 'col-sm-6' }} ">
+                    <div class="col-md-4 {{ $loop->iteration == 3 ? 'col-sm-12' : 'col-sm-6' }}" >
                         <div class="lab-card">
                             <div class="icon">
                                 <i class="{{$serv->icone}}"></i>
                             </div>
                             <h2>{{ $serv->titre }}</h2>
-                            <p>{{ $serv->description }}</p>
+                            <p>{{ Str::limit($serv->description, 70) }}</p>
                         </div>
                     </div>  
-                @endforeach --}}
+                @endforeach
             </div>
         </div>
     </div>
@@ -92,12 +91,12 @@
 <!-- About section end -->
 
 <!-- Testimonial section -->
-<div class="testimonial-section pb100">
-    <div class="test-overlay"></div>
+<div class="testimonial-section pb100" >
+    <div class="test-overlay" id="testimontials"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-4">
-                <div class="section-title left">
+                <div class="section-title left" >
                     <h2>{{ $homeinfo->t2 }} </h2>
                 </div>
                 {{-- {{ dd($testims) }} --}}
@@ -134,120 +133,25 @@
         <div class="section-title dark">
             <h2> {!! bbcodetitle($homeinfo->t3) !!} </h2>
         </div>
-        <div class="row">
-            {{-- @forelse ($collection as $item)
-                
-            @empty
-                
-            @endforelse --}}
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-023-flask"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Get in the lab</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-011-compass"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Projects online</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+        <div class="row d-flex justify-content-start">
+            @forelse ($rservices[1] as $serv)
+                <div class="col-md-4 col-sm-6">
+
+                    <div class="service">
+
+                        <div class="icon text-left">
+                            <i class="{{$serv->icone}}"></i>
+                        </div>
+
+                        <div class="service-text">
+                            <h2>{{ $serv->titre }}</h2>
+                            <p>{{  Str::limit($serv->description, 100, ) }} </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-037-idea"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>SMART MARKETING</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-039-vector"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Social Media</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-036-brainstorming"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Brainstorming</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-026-search"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Documented</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-018-laptop-1"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Responsive</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-043-sketch"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Retina ready</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
-            <!-- single service -->
-            <div class="col-md-4 col-sm-6">
-                <div class="service">
-                    <div class="icon">
-                        <i class="flaticon-012-cube"></i>
-                    </div>
-                    <div class="service-text">
-                        <h2>Ultra modern</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-                    </div>
-                </div>
-            </div>
+                @empty 
+
+            @endforelse
         </div>
         <div class="text-center">
             <a href="" class="site-btn">Browse</a>
