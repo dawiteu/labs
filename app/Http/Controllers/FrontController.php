@@ -42,4 +42,8 @@ class FrontController extends Controller
         $serv2    = Services::all()->random(6); 
         return view('services', compact('servinfo', 'servs', 'serv2')); 
     }
+    public function contact(){ 
+
+        return view('contact'); 
+    }
 }
