@@ -29,7 +29,9 @@ Route::get('/home', function () {
 Route::get('/', [FrontController::class, 'index'])->name('front.index'); 
 Route::get('/services', [FrontController::class, 'services'])->name('services.index'); 
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact.index'); 
-
+Route::post('/contact-send-mail', [FrontController::class,'submitcontact'])->name('contact.sendemail');
+Route::get('/blog', [FrontController::class, 'blog'])->name('blog.index'); 
+Route::get('/blog/post/{id}', [FrontController::class, 'showart'])->name('blog.showart'); 
 // back 
 Route::get('/admin', function () {
     return view('admin.dashboard');

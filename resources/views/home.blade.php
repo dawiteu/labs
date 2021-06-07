@@ -242,5 +242,5 @@
 	</div>
 	<!-- Promotion section end-->
 
-    @include('components.front.footer')
+    {!! $footer !!}
 @endsection

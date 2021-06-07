@@ -5,28 +5,46 @@
 				<!-- contact info -->
 				<div class="col-md-5 col-md-offset-1 contact-info col-push">
 					<div class="section-title left">
-						<h2>Contact us</h2>
+						<h2>{!! $footinfo->t1 !!} </h2>
 					</div>
-					<p>Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum. </p>
-					<h3 class="mt60">Main Office</h3>
-					<p class="con-item">C/ Libertad, 34 <br> 05200 Arévalo </p>
-					<p class="con-item">0034 37483 2445 322</p>
-					<p class="con-item">hello@company.com</p>
+					<p> {!! $footinfo->desc1 !!}</p>
+					<h3 class="mt60">{!! $footinfo->t2 !!} </h3>
+					<p class="con-item">{!! $footinfo->adresse !!}</p>
+					<p class="con-item">{!! $footinfo->tel !!} </p>
+					<p class="con-item">{!! $footinfo->email !!} </p>
 				</div>
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
-					<form class="form-class" id="con_form">
+					<form class="form-class" id="con_form" method="POST" action="{{route('contact.sendemail')}}">
+						@csrf
 						<div class="row">
 							<div class="col-sm-6">
 								<input type="text" name="name" placeholder="Your name">
+								<br/> 
+								@error('name')
+									<span class="text-danger">{{$message}}</span>
+								@enderror
 							</div>
 							<div class="col-sm-6">
 								<input type="text" name="email" placeholder="Your email">
+								<br/> 
+								@error('email')
+									<span class="text-danger">{{$message}}</span>
+								@enderror
 							</div>
 							<div class="col-sm-12">
-								<input type="text" name="subject" placeholder="Subject">
-								<textarea name="message" placeholder="Message"></textarea>
-								<button class="site-btn">send</button>
+								<select name="subject" style="background-color:#f6edfb; width:100%; padding-top:10px; padding-bottom:10px; margin-bottom:10px;">
+									@foreach ($subjects as $suj)
+										<option value="{{$suj->id}}">{{$suj->nom}}</option>
+									@endforeach
+								</select>
+								<textarea name="message" placeholder="Message" style="resize:none!important;" maxlength="200"></textarea>
+								<br/> 
+								@error('message')
+									<span class="text-danger">{{$message}}</span>
+								@enderror
+								<br/> 
+								<button class="site-btn" name="submitcontactform">send</button>
 							</div>
 						</div>
 					</form>

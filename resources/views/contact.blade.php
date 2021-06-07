@@ -21,10 +21,9 @@
     <!-- Google map -->
 	<div class="map" id="map-area"></div>
 
+    {!! $footer !!}
 
-
-
-    @include('components.front.footer')
+    {{-- @include('components.front.footer') --}}
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
 	<script src="{{asset('js/map.js')}}"></script>

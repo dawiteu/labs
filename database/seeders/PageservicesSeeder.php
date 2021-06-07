@@ -20,7 +20,8 @@ class PageservicesSeeder extends Seeder
             "btn1link" => "#services", 
             "t2"    => "GET IN THE L(AB AND DIS)COVER THE WORLD", 
             "btn2text" => "browse", 
-            "btn2link" => "#services"
+            "btn2link" => "#services",
+            "created_at"=> now()
         ]);
     }
 }

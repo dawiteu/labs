@@ -141,8 +141,8 @@
 	</div>
 	<!-- services card section end-->
 
-    
+
 
     @include('components.front.newsletter')
-    @include('components.front.footer')
+    {!! $footer !!}
 @endsection 
