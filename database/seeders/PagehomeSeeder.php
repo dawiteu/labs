@@ -30,7 +30,7 @@ class PagehomeSeeder extends Seeder
             "t2"         => "WHAT OUR CLIENTS SAY", 
             "t3"         => "GET IN (THE LAB) AND SEE THE SERVICES", 
             "btn2text"   => "browse", 
-            "btn2link"   => "", // vers la route service ici donc {{ route('services.all') }} jps
+            "btn2link"   => "#", // vers la route service ici donc {{ route('services.all') }} jps
             "t4"         => "GET IN THE (LAB AND) MEET THE TEAM", 
             "t5"         => "", 
             "desc3"      => "", 

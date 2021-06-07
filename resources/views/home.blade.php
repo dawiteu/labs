@@ -135,7 +135,7 @@
         </div>
         <div class="row d-flex justify-content-start">
             @forelse ($rservices[1] as $serv)
-                <div class="col-md-4 col-sm-6">
+                <div class="servcard col-md-4 col-sm-6">
 
                     <div class="service">
 
@@ -154,7 +154,7 @@
             @endforelse
         </div>
         <div class="text-center">
-            <a href="" class="site-btn">Browse</a>
+            <a href="{{ $homeinfo->btn2link }}" class="site-btn"> {{ $homeinfo->btn2text }}</a>
         </div>
     </div>
 </div>
@@ -167,31 +167,44 @@
         <div class="section-title">
             <h2>{!! bbcodetitle($homeinfo->t4) !!}</h2>
         </div>
+        @php
+            /*
+            Teamceo == "noceo" ===> pas de POSTE CEO. Sinon renvoie le profil du ceo . 
+
+            IF     teamgro == 2 ==> renvoie 2 US random recu du Controller + 1 CEO . 
+            ELSE   teamgro <  3 ==> 
+                        for(i = 1; i < 3 ; i ++ )
+                        if($teamgro[i] != -1){
+
+                        }
+                            if(i == 2){ 
+                                if(teamceo == noceo){
+                                    // no av 
+                                }else{ 
+                                    // CEO 
+                                }
+                            }
+            
+            */
+        @endphp
+        {{-- {{ dd($teamgro) }} --}}
+
         <div class="row">
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/1.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Project Manager</h3>
+            @for ($i = 0; $i < 2; $i++)
+                <!-- single member -->
+                <div class="col-sm-4">
+                    <div class="member {{$i}}">
+                        <img src={{ $i == 1 ? $teamceo != "noceo" ? asset($teamceo->image) : asset("img/def/noav2.png") : asset($teamgro[$i]->image) }} alt=""> 
+                        <h2>     {{ $i == 1 ? $teamceo != "noceo" ? $teamceo->prenom . " " . $teamceo->nom : "noav " : $teamgro[$i]->prenom . " " . $teamgro[$i]->nom}}</h2>
+                        <h3>     {{ $i == 1 ? $teamceo != "noceo" ? $teamceo->poste->nom : "pas de ceo dispo " : $teamgro[$i]->poste->nom }}</h3>
+                    </div>
                 </div>
-            </div>
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/2.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Junior developer</h3>
-                </div>
-            </div>
-            <!-- single member -->
-            <div class="col-sm-4">
-                <div class="member">
-                    <img src="img/team/3.jpg" alt="">
-                    <h2>Christinne Williams</h2>
-                    <h3>Digital designer</h3>
-                </div>
-            </div>
+                @if ($i == 1) {{-- LE MILIEU, CEO--}}
+                    
+                @else
+                    
+                @endif
+            @endfor
         </div>
     </div>
 </div>

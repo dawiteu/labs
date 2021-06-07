@@ -43,6 +43,23 @@ class UserSeeder extends Seeder
                 "def_pass"          => 1,
                 "created_at"        => now(), 
             ], 
+            [
+                "nom"               => "William",
+                "prenom"            => "Christine",
+                "email"             => "chrischrist@wlm.be", 
+                "email_verified_at" => now(), 
+                "password"          => Hash::make('christ1'), 
+                "image"             => "img/team/2.jpg", 
+                "description"       => "",
+                "role_id"           => 4, // membre (pour le BO)
+                "poste_id"          => 5, // PosteSeeder ---> 
+                "active"            => 1, // l'admin est dirrectement activé
+                "deleted"           => 0, 
+                "created_by"        => 1, // le premier s'est fait lui meme. 
+                "login_token"       => Str::random(9),
+                "def_pass"          => 1,
+                "created_at"        => now(), 
+            ], 
         ]);
         
         $data = new stdClass; 

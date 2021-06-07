@@ -15,10 +15,12 @@ class PosteSeeder extends Seeder
     public function run()
     {
         DB::table('postes')->insert([
-            ["nom" =>    "Webmaster",      "created_at" => now() ], 
-            ["nom" =>    "CEO",            "created_at" => now() ], 
-            ["nom"  =>   "Junior",         "created_at" => now() ],
-            ["nom"  =>   "Senior",         "created_at" => now() ]
+            ["nom" =>    "Webmaster",           "created_at" => now() ], // 1
+            ["nom" =>    "CEO",                 "created_at" => now() ], // 2
+            ["nom"  =>   "Junior developer",    "created_at" => now() ], // 3
+            ["nom"  =>   "Senior developer",    "created_at" => now() ], // 4 
+            ["nom"  =>   "Project Manager",     "created_at" => now() ], // 5 
+            ["nom"  =>   "Digital Designer",    "created_at" => now() ]  // 6
         ]); 
     }
 }
