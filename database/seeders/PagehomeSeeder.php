@@ -32,10 +32,10 @@ class PagehomeSeeder extends Seeder
             "btn2text"   => "browse", 
             "btn2link"   => "#", // vers la route service ici donc {{ route('services.all') }} jps
             "t4"         => "GET IN THE (LAB AND) MEET THE TEAM", 
-            "t5"         => "", 
-            "desc3"      => "", 
+            "t5"         => "Are you ready to stand out?", 
+            "desc3"      => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est.", 
             "btn3text"   => "browse", 
-            "btn3link"   => "", 
+            "btn3link"   => "#contact", 
             "created_at" => now(), 
 
         ]);

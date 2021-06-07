@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pagehome;
 use App\Models\Pagehomecarousel;
+use App\Models\Pageservices;
 use App\Models\Services;
 use App\Models\Testimontial;
 use App\Models\User;
@@ -33,5 +34,12 @@ class FrontController extends Controller
             die('Erreur DB : <br/> + ' . implode(' <br/> + ', $errors) . " <br/>try: <br/> <code> php artisan migrate:fresh <b>--seed</b> </code> "); 
         }
         
+    }
+
+    public function services(){
+        $servinfo = Pageservices::all()->first(); 
+        $servs    = Services::all()->random(9);
+        $serv2    = Services::all()->random(6); 
+        return view('services', compact('servinfo', 'servs', 'serv2')); 
     }
 }

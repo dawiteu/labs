@@ -224,6 +224,23 @@
 </div>
 <!-- Team Section end-->
 
+	<!-- Promotion section -->
+	<div class="promotion-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<h2>{{ $homeinfo->t5 }}</h2>
+					<p>{{ $homeinfo->desc3 }}</p>
+				</div>
+				<div class="col-md-3">
+					<div class="promo-btn-area">
+						<a href="{{$homeinfo->btn3link}}" class="site-btn btn-2">{{$homeinfo->btn3text}}</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Promotion section end-->
 
-
+    @include('components.front.footer')
 @endsection

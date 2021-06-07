@@ -27,6 +27,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index'); 
+Route::get('/services', [FrontController::class, 'services'])->name('services.index'); 
 
 // back 
 Route::get('/admin', function () {
