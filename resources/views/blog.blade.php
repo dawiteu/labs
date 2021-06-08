@@ -58,8 +58,8 @@
 				<div class="col-md-4 col-sm-5 sidebar" style="position:sticky; top:50px;">
 					<!-- Single widget -->
 					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search">
+						<form action="{{route('blog.search')}}" class="search-form" method="GET">
+							<input type="text" placeholder="Search" name="q">
 							<button class="search-btn"><i class="flaticon-026-search"></i></button>
 						</form>
 					</div>
@@ -78,11 +78,11 @@
 					</div>
 					<!-- Single widget -->
 					<div class="widget-item">
-						<h2 class="widget-title">Tags</h2>
+						<h2 class="widget-title">Tags </h2>
 						<ul class="tag">
 							{{-- Recherche par tag  --}}
                             @forelse ($tags as $tag)
-                                <li><a href="#">{{ $tag->nom }}</a></li>
+                                <li><a href="{{route('blog.showtag', $tag->nom)}}">{{ $tag->nom }}</a></li>
                                 @if ($loop->iteration >= 7) 
                                     @break
                                 @endif

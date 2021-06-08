@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Comment;
+use App\Models\Newsletter;
 use App\Models\Pagecontact;
 use App\Models\Pagehome;
 use App\Models\Pagehomecarousel;
@@ -92,9 +93,16 @@ class FrontController extends Controller
     }
 
     // front recherche BLOG ( par CAT TITLE)
-    public function search($string){ 
-        $route = "search"; 
-        return view('blogshow', compact('route'));
+    public function search(Request $request){ 
+        if($request->has('q')){
+            $q = $request->q; 
+            $route = "search"; 
+            $cats  = Categorie::all();
+            $tags = Tag::all(); 
+            $footer = $this->footer();
+            $results = Article::where('titre', 'LIKE', "%" . $q . "%")->get();
+            return view('blogshow', compact('route', 'results', 'cats','tags', 'footer', 'q'));
+        }
     }
 
     // FRONT BLOG SHOW Article 
@@ -118,18 +126,17 @@ class FrontController extends Controller
 
     // FRONT BLOG SHOW TAG(S) par nom 0/10 
     public function showtags($tag){
-        $route = "tags"; 
-        $cats  = Categorie::all();
-        $tags = Tag::all(); 
-        $taag = Tag::where('nom', 'LIKE', "%" . $tag . "%")->get(); 
-        $footer = $this->footer();
-        return view('blogshow', compact('route', 'cats', 'tags', 'taag', 'footer')); 
+        $route   = "tags"; 
+        $cats    = Categorie::all();
+        $tags    = Tag::all(); 
+        $results = Tag::where('nom', 'LIKE', "%" . $tag . "%")->get(); 
+        $footer  = $this->footer();
+        return view('blogshow', compact('route', 'cats', 'tag', 'tags', 'results', 'footer')); 
     }
 
     // FRONT BLOG AJOUT DE COMMANTAIRE 
     public function leavecomment(Request $request, Article $article){ 
         if($request->has('subaddcom')){
-            //dd($article); 
 
             $request->validate([
                 "name" => "required|min:5", 
@@ -150,5 +157,20 @@ class FrontController extends Controller
 
             return redirect()->back()->with('success', 'Comment save. att validate = 1');
         }
+    }
+
+    // front newsletrrer register 
+
+    public function newsletterstore(Request $request){
+
+            $request->validate([  "newsemail" => "required|email" ]);
+        
+            $newnewsemail = new Newsletter(); 
+            $newnewsemail->email = $request->newsemail;
+            $newnewsemail->subscribe = 1; // par def s'il s'enregistre c'est pour recevoir de la pub. 
+
+            $newnewsemail->save(); 
+
+            return redirect()->back()->with('success','E-mail bien enregistrer dans l newsletter !'); 
     }
 }

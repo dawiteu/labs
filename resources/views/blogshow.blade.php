@@ -27,7 +27,14 @@
 
                     @switch($route)
                         @case("search")
-                                <p>serch </p>
+                                <p>Recherche d'articles avec : {{ $q }} </p>
+                                <ul>
+                                    @forelse ($results as $art)
+                                        <li><a href="{{route('blog.showart', $art->id)}}">{{$art->titre}}</a></li>
+                                    @empty
+                                    <li>La recherche n'as pas retourné de résultats</li>
+                                    @endforelse
+                                </ul>
                             @break
                         @case("articles")
                             <div class="single-post">
@@ -64,13 +71,16 @@
                                         <h2>Comments ({{count($id->comments)}})</h2>
                                         <ul class="comment-list">
                                             @forelse ($id->comments as $comment)
-                                            @if ($loop->iteration >= 10) @break @endif
-                                                <li>
-                                                    <div class="commetn-text">
-                                                        <h3>{{ $comment->auteur }} | {{$comment->created_at->format('d M, Y')}} | <a href="#leavecom" class="replytocom" data-target="{{$comment->auteur}}">Reply</a></h3>
-                                                        <p>{{$comment->message }}</p>
-                                                    </div>
-                                                </li>
+                                                @if ($loop->iteration >= 10) @break @endif
+
+                                                @if ($comment->valide == 1)   
+                                                    <li>
+                                                        <div class="commetn-text">
+                                                            <h3>{{ $comment->auteur }} | {{$comment->created_at->format('d M, Y')}} | <a href="#leavecom" class="replytocom" data-target="{{$comment->auteur}}">Reply</a></h3>
+                                                            <p>{{$comment->message }}</p>
+                                                        </div>
+                                                    </li>
+                                                @endif
                                             @empty
                                                 <li>Pas de comments ici...</li>
                                             @endforelse
@@ -116,14 +126,13 @@
                                 </div>
                             @break
                         @case("categories")
-                                <p>cats !</p>
                                 <p>{{ count($categ) }} Résultat(s) de la recherche pour: {{ $categorie }} </p>
             
                                 @forelse ($categ as $cat)
-                                    <p>Catégorie: {{$cat->nom }} | Articles : {{count($cat->article) }}</p>
+                                    <p>Catégorie: <u>{{$cat->nom }}</u> | Articles : {{count($cat->article) }}</p>
                                     <ul>
                                         @forelse ($cat->article as $art)
-                                            <li><a href="">{{$art->titre}}</a></li>
+                                            <li><a href="{{route('blog.showart', $art->id)}}">{{$art->titre}}</a></li>
                                         @empty
                                             <li>pas d'article pour cette cat.</li>
                                         @endforelse
@@ -133,7 +142,18 @@
                                 @endforelse
                             @break
                         @case("tags")
-                                    <p>{{ $taag }} </p>
+                            <p>{{ count($results) }} Résultat(s) de la recherche pour le tag: {{ $tag }} </p>
+                                <ul>
+                                    @forelse ($results as $taag)
+                                        @forelse ($taag->article as $art)
+                                            <li><a href="{{ route('blog.showart', $art->id) }}"> {{ $art->titre }} </a></li>
+                                        @empty
+                                            <li>pas d'articles pour ce tag </li>
+                                        @endforelse
+                                    @empty
+                                        <li>Pas d'articles pour cette recherche de tag.</li>
+                                    @endforelse
+                                </ul>
                             @break
                         @default
                             <p>Erreur 404: page introuvable. <a href="{{route( redirect()->back() ) }}">retour? </a></p>
@@ -144,8 +164,8 @@
 				<div class="col-md-4 col-sm-5 sidebar" style="position:sticky; top:50px;">
 					<!-- Single widget -->
 					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search">
+						<form action="{{route('blog.search')}}" class="search-form" method="GET">
+							<input type="text" placeholder="Search" name="q">
 							<button class="search-btn"><i class="flaticon-026-search"></i></button>
 						</form>
 					</div>
@@ -168,7 +188,7 @@
 						<ul class="tag">
 							{{-- Recherche par tag  --}}
                             @forelse ($tags as $tag)
-                                <li><a href="#">{{ $tag->nom }}</a></li>
+                            <li><a href="{{route('blog.showtag', $tag->nom)}}">{{ $tag->nom }}</a></li>
                                 @if ($loop->iteration >= 7) 
                                     @break
                                 @endif

@@ -26,15 +26,24 @@ Route::get('/home', function () {
     return view('welcome');
 })->name('home');
 
+
 Route::get('/', [FrontController::class, 'index'])->name('front.index'); 
+
 Route::get('/services', [FrontController::class, 'services'])->name('services.index'); 
+
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact.index'); 
 Route::post('/contact-send-mail', [FrontController::class,'submitcontact'])->name('contact.sendemail');
+
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog.index'); 
 Route::get('/blog/post/{id}', [FrontController::class, 'showart'])->name('blog.showart'); 
 Route::get('/blog/categorie/{categorie}', [FrontController::class, 'showcats'])->name('blog.showcat'); // recherche par categorie ;  
 Route::get('/blog/tag/{tag}', [FrontController::class,'showtags'])->name('blog.showtag'); 
 Route::post('/blog/addcom/{article}', [FrontController::class, 'leavecomment'])->name('blog.addcom'); 
+Route::get('/blog/search/', [FrontController::class, 'search'])->name('blog.search'); 
+
+Route::post('/newsletterstore', [FrontController::class,'newsletterstore'])->name('newsletterstore'); 
+
+
 // back 
 Route::get('/admin', function () {
     return view('admin.dashboard');

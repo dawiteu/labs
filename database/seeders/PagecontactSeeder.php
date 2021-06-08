@@ -21,6 +21,7 @@ class PagecontactSeeder extends Seeder
             "adresse"   => "C/ Libertad, 34 <br> 05200 Arévalo ",
             "tel"       => "0034 37483 2445 322",
             "email"     => "hello@company.com",
+            "footer"    => "All rights reserved. Designed by <a href='#'>Colorlib</a>",
             "created_at"=> now()
 
         ]);
