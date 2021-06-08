@@ -42,7 +42,7 @@ Route::post('/blog/addcom/{article}', [FrontController::class, 'leavecomment'])-
 Route::get('/blog/search/', [FrontController::class, 'search'])->name('blog.search'); 
 
 Route::post('/newsletterstore', [FrontController::class,'newsletterstore'])->name('newsletterstore'); 
-
+Route::get('/newsletter/unsub/{email}', [FrontController::class, 'newsunsub'])->name('newsunsub'); 
 
 // back 
 Route::get('/admin', function () {

@@ -1,5 +1,5 @@
 	<!-- newsletter section -->
-	<div class="newsletter-section spad">
+	<div class="newsletter-section spad" id="newsletter">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">

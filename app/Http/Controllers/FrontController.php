@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsBienvSender;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Comment;
@@ -16,6 +17,7 @@ use App\Models\Tag;
 use App\Models\Testimontial;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontController extends Controller
 {
@@ -163,14 +165,44 @@ class FrontController extends Controller
 
     public function newsletterstore(Request $request){
 
-            $request->validate([  "newsemail" => "required|email" ]);
-        
+        $request->validate([ "newsemail" => "required|email" ]);
+    
+        $exist = Newsletter::where('email', $request->newsemail)->get(); 
+        $count = count($exist); 
+
+        if($count == 1){
+            // je voulais faire une validation "if email exist --> t\'es deja inscrit, mais c'est pas secu. 
+            $exist[0]->subscribe = 1; 
+            $exist[0]->save(); 
+            Mail::to($request->newsemail)->send(new NewsBienvSender($request)); 
+            return redirect()->back()->with('success','E-mail bien reenregistrer dans l newsletter !'); 
+        }else{
             $newnewsemail = new Newsletter(); 
             $newnewsemail->email = $request->newsemail;
             $newnewsemail->subscribe = 1; // par def s'il s'enregistre c'est pour recevoir de la pub. 
 
             $newnewsemail->save(); 
 
-            return redirect()->back()->with('success','E-mail bien enregistrer dans l newsletter !'); 
+            Mail::to($request->newsemail)->send(new NewsBienvSender($request)); 
+
+            return redirect()->back()->with('success','E-mail bien enregistrer dans l newsletter !')->withErrors('error', 'Erreur...?'); 
+        }
+
+    }
+
+
+    public function newsunsub($email){
+        $email = Newsletter::where('email', $email)->get(); 
+        if($email){
+            if($email[0]->subscribe == 1){
+                $email[0]->subscribe = 0; 
+                $email[0]->save();
+                return redirect()->route('front.index')->with('success', "unsub ok "); 
+            }else{
+                return redirect()->route('front.home')->with('error', 'E-mail non trouvé'); 
+            }
+        }else{
+            return redirect()->route('front.home')->with('error', 'E-mail non trouvé'); 
+        }
     }
 }

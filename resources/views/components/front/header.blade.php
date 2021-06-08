@@ -1,7 +1,7 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="{{asset('./img/big-logo.png')}}" alt="" style="max-height:32px;"><!-- Logo -->
+			<a href="{{route('front.index')}}"><img src="{{asset('./img/big-logo.png')}}" alt="" style="max-height:32px;"><!-- Logo --></a>
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
