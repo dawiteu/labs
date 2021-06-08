@@ -58,4 +58,8 @@ class User extends Authenticatable
         return $this->belongsTo(User::class); 
     }
 
+    public function articles(){
+        return $this->hasMany(Article::class); 
+    }
+
 }

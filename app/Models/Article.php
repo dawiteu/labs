@@ -20,4 +20,8 @@ class Article extends Model
     public function categorie(){
         return $this->belongsTo(Categorie::class); 
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

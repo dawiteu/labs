@@ -38,6 +38,6 @@ class DatabaseSeeder extends Seeder
         Testimontial::factory(10)->create();
         Tag::factory()->count(15)->create(); 
         Article_tag::factory()->count(10)->create(); 
-        Comment::factory()->count(5)->create(); 
+        Comment::factory()->count(20)->create(); 
     }
 }

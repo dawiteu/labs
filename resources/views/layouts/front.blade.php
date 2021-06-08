@@ -38,6 +38,8 @@
 
     @include('components.front.header')
     
+	@include('layouts.frontflash')
+
     @yield('content')
 
 
@@ -49,6 +51,7 @@
 	<script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
 	<script src="{{ asset('js/circle-progress.min.js') }}" ></script>
 	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="{{ asset('js/myscript.js') }}"></script>
 
 </body>
 </html>

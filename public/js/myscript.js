@@ -1,5 +1,13 @@
 $(function(){
 
+    // reply dans blog COMS: 
+
+    $(".replytocom").on("click", function(){
+        //alert('reply!');
+        $("#addcomment").val( "@"+$(this).data('target')+" : ");
+    }); 
+
+
 
 
     // resultats recherche Icones dans la DB. 

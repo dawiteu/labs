@@ -22,7 +22,7 @@ class Article_tagFactory extends Factory
     public function definition()
     {
         return [
-            "article_id" => $this->faker->numberBetween(1, 3),
+            "article_id" => $this->faker->numberBetween(1, 5),
             "tag_id"     => $this->faker->numberBetween(1, 15),
         ];
     }

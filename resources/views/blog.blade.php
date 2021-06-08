@@ -19,7 +19,7 @@
 	<!-- Page header end-->
 
 
-    	<!-- page section -->
+    <!-- page section -->
 	<div class="page-section spad">
 		<div class="container">
 			<div class="row">
@@ -36,12 +36,12 @@
                                 <div class="post-content">
                                     <h2 class="post-title">{{$art->titre}}</h2>
                                     <div class="post-meta">
-                                        <a href="">{{ $art->categorie->nom }}</a>
+                                        <a href="{{route('blog.showcat',$art->categorie->nom )}}">{{ $art->categorie->nom }}</a>
                                         <a href="">Tags associés: {{ count($art->tags) }}</a>
                                         <a href="">{{count($art->comments)}} Comments</a>
                                     </div>
                                     <p>{{ Str::limit($art->description, 200, '...') }}</p>
-                                    <a href="blog-post.html" class="read-more">Read More</a>
+                                    <a href="{{route('blog.showart', $art->id)}}" class="read-more">Lisez la suite... >></a>
                                 </div>
                             </div> 
                         @empty
@@ -69,7 +69,7 @@
 						<ul>
                             {{-- Recherche par categorie  --}}
                             @forelse ($cats as $cat)
-                                <li><a href="#">{{ $cat->nom }}</a></li>
+                                <li><a href="{{route('blog.showcat', $cat->nom)}}">{{ $cat->nom }}</a></li>
                                 @if ($loop->iteration >= 7) @break @endif
                             @empty
                                 <p>Pas de categories...</p>

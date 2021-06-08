@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Comment;
 use App\Models\Pagecontact;
 use App\Models\Pagehome;
 use App\Models\Pagehomecarousel;
@@ -37,7 +38,7 @@ class FrontController extends Controller
         
         $teamceo    = User::where('poste_id', '2')->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
         $teamgro    = count(User::all()) >= 2 ? User::all()->random(2) : User::all(); 
-       
+
         $footer = $this->footer();
         
         if(empty($errors)){
@@ -90,9 +91,64 @@ class FrontController extends Controller
         return view('blog', compact('arts','cats','tags','footer')); 
     }
 
-    public function showart(Article $id){ 
-        return view(''); 
+    // front recherche BLOG ( par CAT TITLE)
+    public function search($string){ 
+        $route = "search"; 
+        return view('blogshow', compact('route'));
     }
 
+    // FRONT BLOG SHOW Article 
+    public function showart(Article $id){ 
+        $route = "articles"; 
+        $cats  = Categorie::all();
+        $tags = Tag::all(); 
+        $footer = $this->footer();
+        return view('blogshow', compact('route', 'cats', 'tags', 'id', 'footer')); 
+    }
 
+    // FRONT BLOG SHOW CAT(S) par titre 
+    public function showcats($categorie){
+        $route = "categories"; 
+        $cats  = Categorie::all();
+        $tags = Tag::all(); 
+        $categ = Categorie::where('nom', 'LIKE', "%" . $categorie . "%")->get(); 
+        $footer = $this->footer();
+        return view('blogshow', compact('route', 'cats', 'tags', 'categ', 'categorie', 'footer')); 
+    }
+
+    // FRONT BLOG SHOW TAG(S) par nom 0/10 
+    public function showtags($tag){
+        $route = "tags"; 
+        $cats  = Categorie::all();
+        $tags = Tag::all(); 
+        $taag = Tag::where('nom', 'LIKE', "%" . $tag . "%")->get(); 
+        $footer = $this->footer();
+        return view('blogshow', compact('route', 'cats', 'tags', 'taag', 'footer')); 
+    }
+
+    // FRONT BLOG AJOUT DE COMMANTAIRE 
+    public function leavecomment(Request $request, Article $article){ 
+        if($request->has('subaddcom')){
+            //dd($article); 
+
+            $request->validate([
+                "name" => "required|min:5", 
+                "email"=> "required", 
+                "message"=> "required"
+            ]); 
+
+            $com = new Comment(); 
+
+            $com->auteur = $request->name; 
+            $com->auteur_email = $request->email; 
+            $com->message = $request->message; 
+            $com->valide = 0; // par def ils ne sont pas validés. 
+            $com->deleted = 0; // par def ils ne sont pas supprimés. 
+            $com->article_id = $article->id; 
+
+            $com->save(); 
+
+            return redirect()->back()->with('success', 'Comment save. att validate = 1');
+        }
+    }
 }

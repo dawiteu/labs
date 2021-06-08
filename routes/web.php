@@ -33,6 +33,8 @@ Route::post('/contact-send-mail', [FrontController::class,'submitcontact'])->nam
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog.index'); 
 Route::get('/blog/post/{id}', [FrontController::class, 'showart'])->name('blog.showart'); 
 Route::get('/blog/categorie/{categorie}', [FrontController::class, 'showcats'])->name('blog.showcat'); // recherche par categorie ;  
+Route::get('/blog/tag/{tag}', [FrontController::class,'showtags'])->name('blog.showtag'); 
+Route::post('/blog/addcom/{article}', [FrontController::class, 'leavecomment'])->name('blog.addcom'); 
 // back 
 Route::get('/admin', function () {
     return view('admin.dashboard');

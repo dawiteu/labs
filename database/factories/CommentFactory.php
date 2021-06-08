@@ -22,11 +22,12 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            "auteur"     => $this->faker->name(),
-            "message"    => $this->faker->text(50),
-            "valide"     => 1, // les factory passent;  
-            "deleted"    => 0, 
-            "article_id" => $this->faker->numberBetween(1, 3)
+            "auteur"        => $this->faker->name(),
+            "auteur_email"  => $this->faker->email,
+            "message"       => $this->faker->text(50),
+            "valide"        => 1, // les factory passent;  
+            "deleted"       => 0, 
+            "article_id"    => $this->faker->numberBetween(1, 5)
         ];
     }
 }

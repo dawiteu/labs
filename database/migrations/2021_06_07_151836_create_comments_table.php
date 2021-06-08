@@ -15,7 +15,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('auteur'); 
+            $table->string('auteur');
+            $table->string('auteur_email');  
             $table->text('message'); 
             $table->integer('valide'); // l'admin ou WEBM peut valider ou non les comments.  
             $table->integer('deleted'); 
