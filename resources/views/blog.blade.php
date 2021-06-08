@@ -70,9 +70,7 @@
                             {{-- Recherche par categorie  --}}
                             @forelse ($cats as $cat)
                                 <li><a href="#">{{ $cat->nom }}</a></li>
-                                @if ($loop->iteration >= 7) 
-                                    @break
-                                @endif
+                                @if ($loop->iteration >= 7) @break @endif
                             @empty
                                 <p>Pas de categories...</p>
                             @endforelse

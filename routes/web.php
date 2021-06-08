@@ -32,6 +32,7 @@ Route::get('/contact', [FrontController::class, 'contact'])->name('contact.index
 Route::post('/contact-send-mail', [FrontController::class,'submitcontact'])->name('contact.sendemail');
 Route::get('/blog', [FrontController::class, 'blog'])->name('blog.index'); 
 Route::get('/blog/post/{id}', [FrontController::class, 'showart'])->name('blog.showart'); 
+Route::get('/blog/categorie/{categorie}', [FrontController::class, 'showcats'])->name('blog.showcat'); // recherche par categorie ;  
 // back 
 Route::get('/admin', function () {
     return view('admin.dashboard');

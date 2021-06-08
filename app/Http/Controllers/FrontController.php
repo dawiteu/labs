@@ -84,7 +84,7 @@ class FrontController extends Controller
     // front page BLOG 
     public function blog(){ 
         $arts = Article::paginate(3); 
-        $cats = Categorie::all();
+        $cats = Categorie::all()->random(count(Categorie::all()));
         $tags = Tag::all(); 
         $footer = $this->footer(); 
         return view('blog', compact('arts','cats','tags','footer')); 
