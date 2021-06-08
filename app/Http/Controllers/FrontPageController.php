@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagehome;
 use Illuminate\Http\Request;
 
 class FrontPageController extends Controller
@@ -13,16 +14,17 @@ class FrontPageController extends Controller
     public function edit($page){
         switch ($page) {
             case 'home':
-                dd('home');
+                $infopage = Pagehome::all()->first(); 
+                return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'home-car':
-                    dd('Home: Carousel only');
+                return view('admin.pages.edit', compact('page'));
                 break;
             case 'services':
-                dd('services');
+                return view('admin.pages.edit', compact('page'));
                 break;
             case 'contact':
-                dd('contact');
+                return view('admin.pages.edit', compact('page'));
                 break;
                                 
             default:
