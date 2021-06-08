@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TestimontialController;
@@ -44,6 +45,8 @@ Route::get('/blog/search/', [FrontController::class, 'search'])->name('blog.sear
 Route::post('/newsletterstore', [FrontController::class,'newsletterstore'])->name('newsletterstore'); 
 Route::get('/newsletter/unsub/{email}', [FrontController::class, 'newsunsub'])->name('newsunsub'); 
 
+
+
 // back 
 Route::get('/admin', function () {
     return view('admin.dashboard');
@@ -77,6 +80,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/testimontials/all', [TestimontialController::class,'index'])->name('testimontial.all');
 
+
+        // Gestions des PAGES du front.  
+        Route::get('/admin/frontpage/index', [FrontPageController::class, 'index'])->name('pages.index'); 
+        
+        Route::get('/admin/frontpage/edit/{page}', [FrontPageController::class, 'edit'])->name('pages.edit'); 
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 

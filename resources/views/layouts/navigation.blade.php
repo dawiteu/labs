@@ -55,6 +55,11 @@
             
             {{ __('Gestion Testimontial') }}
         </x-nav-link>
+
+        <x-nav-link :href="route('pages.index')" :active="request()->is('admin/frontpage/*')"> 
+            
+            {{ __('Gestion des pages (front) ') }}
+        </x-nav-link>
         
     @endWebmaster
 
