@@ -6,55 +6,172 @@
                     @switch($page)
 
                         @case("home")
-                                {{-- {{ dd($infopage) }} --}}
+                            <form action="{{route('pages.updatehome')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="section">
                                     {{--  premier titre  --}}
-                                    <div class="col">
+                                    <div class="col m-2 bg-gray-300">
                                         <label for="t1">Titre 1: <p class="text-center bg-gray-400">les ( ) donnent un bg au text </p></label><br/>
                                         <input type="text" name="t1" value="{{$infopage->t1}}" class="w-full" />
+                                        <br/>
+                                        @error('t1')
+                                            <span class="text-red-500">{{$message}}</span>
+                                        @enderror
                                     </div>
-
                                     {{-- les 2 paraphs  --}}
-                                    <div class="col md:flex">
+                                    <div class="col m-2 bg-gray-300 md:flex flex-wrap">
                                         <div class="w-full md:w-2/4 md:justify-center">
-                                            <label for="t1">Text à gauche (200 ch limit): </label><br/>
-                                            <textarea name="desc1" id="" cols="40" rows="10">{{$infopage->desc1}}</textarea>
+                                            <label for="desc1">Text à gauche (200 ch limit): </label><br/>
+                                            <textarea name="desc1" cols="40" rows="10" maxlength="400">{{$infopage->desc1}}</textarea>
+                                            <br/>
+                                            @error('desc1')
+                                                <span class="text-red-500">{{$message}}</span>
+                                            @enderror
                                         </div>
                                         <div class="w-fulll md:w-2/4">
                                             <label for="t1">Text à droite (200 ch limit): </label><br/>
-                                            <textarea name="desc2" id="" cols="40" rows="10" >{{$infopage->desc2}}</textarea>
+                                            <textarea name="desc2" cols="40" rows="10" maxlength="400">{{$infopage->desc2}}</textarea>
+                                            <br/>
+                                            @error('desc2')
+                                                <span class="text-red-500">{{$message}}</span>
+                                            @enderror
                                         </div>
-                                    </div>
-
-                                    {{-- btn + img + video  --}}
-                                    <div class="col md:flex">
                                         <div class="w-full md:w-2/4 ">
                                             <label for="btn1text">button 1 titre:</label><br/>
                                             <input type="text" name="btn1text" value="{{$infopage->btn1text}}" class="w-full" />
+                                            <br/>
+                                            @error('btn1text')
+                                                <span class="text-red-500">{{$message}}</span>
+                                            @enderror
                                         </div>
                                         <div class="w-fulll md:w-2/4">
                                             <label for="btn1link">button 1 LINK:</label><br/>
                                             <input type="text" name="btn1link" value="{{$infopage->btn1link}}" class="w-full" />
+                                            <br/>
+                                            @error('btn1link')
+                                                <span class="text-red-500">{{$message}}</span>
+                                            @enderror
                                         </div>
-                                    </div> 
-                                    <div class="col md:flex">
-                                        <div class="w-full md:w-2/4 ">
+                                    </div>
+                                    {{-- btn + img + video  --}}
+                                    
+                                    <div class="col m-2 bg-gray-300 md:flex">
+                                        <div class="w-full md:w-2/4 m-1">
                                             <label for="img">Image actuelle sur la vidéo:</label><br/>
                                             <img src="{{asset($infopage->imglink)}}" class="w-full" alt="img actuelle "/>
                                         </div>
                                         <div class="w-full md:w-2/4 ">
-                                            <label for="videolink">Lien de la vidéo (yt de pref) </label><br/>
+                                            <label for="videolink">Lien de la vidéo (yt de pref)</label><br/>
                                             <input type="text" name="videolink" value="{{$infopage->videolink}}" class="w-full" /> <br/> 
                                             
-                                            <label for="imagelinkfile">Ajouter une image: </label><br/>
+                                            @error('videolink')
+                                               <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                            @enderror
+                                            
+                                            <label for="imagelinkfile">Ajouter une image: <br/><strong>Utilisez uniquement en cas de modification.</strong></label><br/>
                                             <input type="file" name="imagelinkfile" class="w-full" />
                                             
-                                            <label for="imagelinktext">Image du net:</label><br/>
-                                            <input type="text" name="imagelinktext" class="w-full" />
+                                            @error('imagelinkfile')
+                                               <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                            @enderror
+                                            
+                                            {{-- <label for="imagelinktext">Image du net: <br/><strong>Utilisez uniquement en cas de modification.</strong></label><br/>
+                                            <input type="text" name="imagelinktext" class="w-full" /> --}}
                                         </div>
                                     </div> 
 
+                                    {{--  deuxième titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t2">Titre 2: (Testimontial)</label><br/>
+                                        <input type="text" name="t2" value="{{$infopage->t2}}" class="w-full" />
+                                        <br/>
+                                        @error('t2')
+                                            <span class="text-red-500">{{$message}}</span>
+                                        @enderror
+                                    </div>
+
+                                    {{--  3 titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t3">Titre 3: (Services)<p class="text-center bg-gray-400">les ( ) donnent un bg au text </p></label><br/>
+                                        <input type="text" name="t3" value="{{$infopage->t3}}" class="w-full" />
+                                        <br/>
+                                        @error('t3')
+                                            <span class="text-red-500">{{$message}}</span>
+                                        @enderror
+
+                                        <div class="col md:flex">
+                                            <div class="w-full md:w-2/4 ">
+                                                <label for="btn2text">button titre:</label><br/>
+                                                <input type="text" name="btn2text" value="{{$infopage->btn2text}}" class="w-full" />
+                                                <br/>
+                                                @error('btn2text')
+                                                        <span class="text-red-500">{{$message}}</span>
+                                                @enderror 
+                                            <br/>
+                                            </div>
+                                            <div class="w-fulll md:w-2/4">
+                                                <label for="btn2link">button LINK:</label><br/>
+                                                <input type="text" name="btn2link" value="{{$infopage->btn2link}}" class="w-full" />
+                                                <br/>
+                                                @error('btn2link')
+                                                        <span class="text-red-500">{{$message}}</span>
+                                                @enderror 
+                                                <br/>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+
+                                    {{--  4 titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t4">Titre 4: (Team)<p class="text-center bg-gray-400">les ( ) donnent un bg au text </p></label><br/>
+                                        <input type="text" name="t4" value="{{$infopage->t4}}" class="w-full" />
+                                        <br/>
+                                        @error('t4')
+                                            <span class="text-red-500">{{$message}}</span>
+                                        @enderror
+                                    </div>
+
+                                    {{--  dernier titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t5">Titre 5: (L'info avant le footer) </label><br/>
+                                        <input type="text" name="t5" value="{{$infopage->t5}}" class="w-full" />
+                                        <br/>
+                                        @error('t5')
+                                                <span class="text-red-500">{{$message}}</span>
+                                        @enderror 
+                                        <br/>
+                                        <label for="desc3">Description :</label><br/>
+                                        <input type="text" name="desc3" value="{{$infopage->desc3}}" class="w-full" />
+                                        <br/>
+                                        @error('desc3')
+                                                <span class="text-red-500">{{$message}}</span>
+                                        @enderror 
+                                        <br/>
+                                        <div class="col md:flex">
+                                            <div class="w-full md:w-2/4 ">
+                                                <label for="btn3text">button titre:</label><br/>
+                                                <input type="text" name="btn3text" value="{{$infopage->btn3text}}" class="w-full" />
+                                                <br/>
+                                            @error('btn3text')
+                                                    <span class="text-red-500">{{$message}}</span>
+                                            @enderror 
+                                            <br/>
+                                            </div>
+                                            <div class="w-fulll md:w-2/4">
+                                                <label for="btn3link">button LINK:</label><br/>
+                                                <input type="text" name="btn3link" value="{{$infopage->btn3link}}" class="w-full" />
+                                                <br/>
+                                                @error('btn3link')
+                                                        <span class="text-red-500">{{$message}}</span>
+                                                @enderror 
+                                                <br/>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="text-center mt-7"><button type="submit" class="bg-green-400 p-2 rounded-sm">Valider la modification</button></div>
                                 </div>
+                            </form>
                             @break
                         @case(2)
                             
@@ -62,6 +179,9 @@
                         @default
                             
                     @endswitch
+
+
+
                     <h3 class="text-xl m-4 text-center md:text-left">
                         Page modification ... {{ $page }}
                     </h3>

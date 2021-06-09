@@ -85,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/frontpage/index', [FrontPageController::class, 'index'])->name('pages.index'); 
         
         Route::get('/admin/frontpage/edit/{page}', [FrontPageController::class, 'edit'])->name('pages.edit'); 
+        Route::post('/admin/front/update/home', [FrontPageController::class, 'updateHome'])->name('pages.updatehome');
     });
         
         Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
