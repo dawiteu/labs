@@ -4,8 +4,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @switch($page)
-
                         @case("home")
+                        <h3 class="text-xl m-4 text-center md:text-left"> Edit Page HOME </h3>
                             <form action="{{route('pages.updatehome')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="section">
@@ -18,24 +18,8 @@
                                             <span class="text-red-500">{{$message}}</span>
                                         @enderror
                                     </div>
-                                    {{-- les 2 paraphs  --}}
+                                    {{-- les btns  --}}
                                     <div class="col m-2 bg-gray-300 md:flex flex-wrap">
-                                        <div class="w-full md:w-2/4 md:justify-center">
-                                            <label for="desc1">Text à gauche (200 ch limit): </label><br/>
-                                            <textarea name="desc1" cols="40" rows="10" maxlength="400">{{$infopage->desc1}}</textarea>
-                                            <br/>
-                                            @error('desc1')
-                                                <span class="text-red-500">{{$message}}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="w-fulll md:w-2/4">
-                                            <label for="t1">Text à droite (200 ch limit): </label><br/>
-                                            <textarea name="desc2" cols="40" rows="10" maxlength="400">{{$infopage->desc2}}</textarea>
-                                            <br/>
-                                            @error('desc2')
-                                                <span class="text-red-500">{{$message}}</span>
-                                            @enderror
-                                        </div>
                                         <div class="w-full md:w-2/4 ">
                                             <label for="btn1text">button 1 titre:</label><br/>
                                             <input type="text" name="btn1text" value="{{$infopage->btn1text}}" class="w-full" />
@@ -173,18 +157,91 @@
                                 </div>
                             </form>
                             @break
-                        @case(2)
+                            {{-- END SWITCH PAGE HOME  --}}
+                        @case("home-car")
                             
-                            @break
+                        {{-- Modificaiton du caorusel de la page home --}}
+                            
+                        @break
+                        @case("services")
+                            <h3 class="text-xl m-4 text-center md:text-left"> Edit Page services </h3>
+                            <form action="{{route('pages.updateservices')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="section">
+                                    {{--  premier titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t1">Titre 1: (Services) <p class="text-center bg-gray-400">les ( ) donnent un bg au text </p></label><br/>
+                                        <input type="text" name="t1" value="{{$infopage->t1}}" class="w-full" />
+                                        
+                                        @error('t1')
+                                        <br/>    <span class="text-red-500">{{$message}}</span> <br/>
+                                        @enderror
+
+                                        <div class="col m-2 bg-gray-300 md:flex flex-wrap">
+                                    
+                                            <div class="w-full md:w-2/4 ">
+                                                <label for="btn1text">button 1 titre:</label><br/>
+                                                <input type="text" name="btn1text" value="{{$infopage->btn1text}}" class="w-full" />
+                                                <br/>
+                                                @error('btn1text')
+                                                    <span class="text-red-500">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="w-fulll md:w-2/4">
+                                                <label for="btn1link">button 1 LINK:</label><br/>
+                                                <input type="text" name="btn1link" value="{{$infopage->btn1link}}" class="w-full" />
+                                                <br/>
+                                                @error('btn1link')
+                                                    <span class="text-red-500">{{$message}}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    {{--  deuxième titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t2">Titre 2: (Device)</label><br/>
+                                        <input type="text" name="t2" value="{{$infopage->t2}}" class="w-full" />
+                                        <br/>
+                                        @error('t2')
+                                           <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                        @enderror
+                                        <div class="col m-2 bg-gray-300">
+                                            <div class="col md:flex">
+                                                <div class="w-full md:w-2/4 ">
+                                                    <label for="btn2text">button titre:</label><br/>
+                                                    <input type="text" name="btn2text" value="{{$infopage->btn2text}}" class="w-full" />
+                                                    <br/>
+                                                    @error('btn2text')
+                                                            <span class="text-red-500">{{$message}}</span>
+                                                    @enderror 
+                                                <br/>
+                                                </div>
+                                                <div class="w-fulll md:w-2/4">
+                                                    <label for="btn2link">button LINK:</label><br/>
+                                                    <input type="text" name="btn2link" value="{{$infopage->btn2link}}" class="w-full" />
+                                                    <br/>
+                                                    @error('btn2link')
+                                                            <span class="text-red-500">{{$message}}</span>
+                                                    @enderror 
+                                                    <br/>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center mt-7"><button type="submit" class="bg-green-400 p-2 rounded-sm">Valider la modification</button></div>
+                                </div>
+                            </form>
+                            
+                        @break
                         @default
                             
                     @endswitch
 
 
 
-                    <h3 class="text-xl m-4 text-center md:text-left">
-                        Page modification ... {{ $page }}
-                    </h3>
 
 
 

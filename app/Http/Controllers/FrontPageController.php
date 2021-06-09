@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pagehome;
+use App\Models\Pageservices;
 use Illuminate\Http\Request;
 
 class FrontPageController extends Controller
@@ -21,7 +22,8 @@ class FrontPageController extends Controller
                 return view('admin.pages.edit', compact('page'));
                 break;
             case 'services':
-                return view('admin.pages.edit', compact('page'));
+                $infopage = Pageservices::first();
+                return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'contact':
                 return view('admin.pages.edit', compact('page'));
@@ -56,7 +58,7 @@ class FrontPageController extends Controller
         $tup = Pagehome::all()->first(); 
         if($request->hasFile('imagelinkfile')){
             $request->file('imagelinkfile')->storePublicly('img/video/','public');
-            $tup->imglink = "img/video/" . $request->file('img')->hashName();
+            $tup->imglink = "img/video/" . $request->file('imagelinkfile')->hashName();
         } // else if link -->file get content et compagnie, mais c'est pour la V0.2 ;; 
         $tup->t1 = $request->t1; 
         $tup->desc1 = $request->desc1;
@@ -78,5 +80,19 @@ class FrontPageController extends Controller
 
         return redirect()->route('pages.index')->with('success', 'Page home bien actualisée');
 
+    }
+
+    public function updateServices(Request $request){
+        //ToUPdate; 
+        $tup = Pageservices::first(); 
+
+        foreach($request->all() as $key => $value) {
+            if(($key != "_token") && ($key != "_method")){
+                $tup->$key = $value; 
+            }
+        }
+        $tup->save(); 
+
+        return redirect()->route('pages.index')->with('success', 'Page services bien actualisée');
     }
 }
