@@ -62,7 +62,11 @@
         </x-nav-link>
         
     @endWebmaster
-
+    @Redacteur
+        <x-nav-link :href="route('admin.blog.index')" :active="request()->is('admin/blog/*')"> 
+            {{ __('Gestion du blog') }}
+        </x-nav-link>
+    @endRedacteur
         <x-nav-link :href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">   
             <form id="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf        

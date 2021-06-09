@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagecontact;
 use App\Models\Pagehome;
 use App\Models\Pageservices;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class FrontPageController extends Controller
     public function edit($page){
         switch ($page) {
             case 'home':
-                $infopage = Pagehome::all()->first(); 
+                $infopage = Pagehome::first(); 
                 return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'home-car':
@@ -26,7 +27,8 @@ class FrontPageController extends Controller
                 return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'contact':
-                return view('admin.pages.edit', compact('page'));
+                $infopage = Pagecontact::first();
+                return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
                                 
             default:
@@ -83,7 +85,6 @@ class FrontPageController extends Controller
     }
 
     public function updateServices(Request $request){
-        //ToUPdate; 
         $tup = Pageservices::first(); 
 
         foreach($request->all() as $key => $value) {

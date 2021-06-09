@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\NewsletterController;
@@ -77,7 +78,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/services/create', [ServicesController::class,'create'])->name('service.create');  
 
         //testimontials: 
-
         Route::get('/admin/testimontials/all', [TestimontialController::class,'index'])->name('testimontial.all');
 
 
@@ -88,11 +88,17 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/front/update/home', [FrontPageController::class, 'updateHome'])->name('pages.updatehome');
         Route::post('/admin/front/update/services', [FrontPageController::class, 'updateServices'])->name('pages.updateservices');
     });
+
+    Route::middleware(['redacteur'])->group(function () {
+        Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('admin.blog.index');
+        Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('admin.blog.show'); 
+    }); 
+    
         
-        Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
-        Route::post('/admin/user/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware(['adminoruser']); 
+    Route::get('/admin/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['adminoruser']); 
+    Route::post('/admin/user/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware(['adminoruser']); 
         
-        Route::get('/admin/user/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/admin/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 });
 

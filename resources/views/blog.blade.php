@@ -50,7 +50,7 @@
 
 					<!-- Pagination -->
                 
-                    <div class="page-pagination">
+                    <div class="mt-5 page-pagination">
                         {{ $arts->links('vendor/pagination/default') }}
 					</div>
 				</div>
