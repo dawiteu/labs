@@ -34,7 +34,7 @@
                                     <a href="{{route('admin.blog.show', $art)}}">
                                         <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde l'article en détails">S</button>                        
                                     </a>
-                                    <a href="#">
+                                    <a href="{{route('admin.blog.edit', $art)}}">
                                         <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie l'article">M</button>
                                     </a>
                                     <a href="#">
