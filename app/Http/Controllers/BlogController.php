@@ -28,4 +28,8 @@ class BlogController extends Controller
         $tags = Tag::all(); 
         return view('admin.blog.edit', compact('article', 'cats', 'tags'));
     }
+
+    public function update(Request $request, Article $article){
+        dd($request, $article); 
+    }
 }

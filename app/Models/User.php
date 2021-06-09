@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     public function created_by(){
-        return $this->belongsTo(User::class); 
+        return $this->hasOne(User::class); 
     }
 
     public function articles(){

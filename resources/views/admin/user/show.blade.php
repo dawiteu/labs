@@ -28,7 +28,7 @@
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Activé: </span> {{ $user->active == 1 ? 'Activé' : 'non-activé' }}</p>
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Supprimé: </span> {{ $user->deleted == 1 ? 'oui' : 'non' }}</p>
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Créer le: </span> {{ $user->created_at->format('d/m/Y H:i:s') }} </p>
-                                <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Créer par: </span> {{ $user->created_by }} </p>
+                                {{-- <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Créer par: </span> {{ dd($user->created_by) }} </p> --}}
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Description: </span> <br/> {{ $user->description }} </p>
                                 
                             </div>
