@@ -190,7 +190,9 @@
         {{-- {{ dd($teamgro) }} --}}
 
         <div class="row">
+            
             @for ($i = 0; $i < 2; $i++)
+            {{-- {{ var_dump($i) }} --}}
                 @if ($i == 1) {{-- LE MILIEU, CEO--}}
                     <!-- single member -->
                     <div class="col-sm-4">
@@ -200,14 +202,26 @@
                             <h3>     {{  $teamceo != "noceo" ? $teamceo->poste->nom : "pas de ceo dispo "  }}</h3>
                         </div>
                     </div>
-                    <!-- single member -->
-                    <div class="col-sm-4">
-                        <div class="member {{$i}}">
-                            <img src="{{asset($teamgro[$i]->image) }}" alt="{{ $teamgro[$i]->prenom . " " . $teamgro[$i]->nom}}"> 
-                            <h2> {{ $teamgro[$i]->prenom . " " . $teamgro[$i]->nom}}</h2>
-                            <h3> {{ $teamgro[$i]->poste->nom }}</h3>
+
+                    @if (count($teamgro) >= 2)
+                        <!-- single member -->
+                        <div class="col-sm-4">
+                            <div class="member {{$i}}">
+                                <img src="{{asset($teamgro[$i]->image) }}" alt="{{ $teamgro[$i]->prenom . " " . $teamgro[$i]->nom}}"> 
+                                <h2> {{ $teamgro[$i]->prenom . " " . $teamgro[$i]->nom}}</h2>
+                                <h3> {{ $teamgro[$i]->poste->nom }}</h3>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <!-- single member -->
+                        <div class="col-sm-4">
+                            <div class="member {{$i-1}}">
+                                <img src="{{asset($teamgro[$i-1]->image) }}" alt="{{ $teamgro[$i-1]->prenom . " " . $teamgro[$i-1]->nom}}"> 
+                                <h2> {{ $teamgro[$i-1]->prenom . " " . $teamgro[$i-1]->nom}}</h2>
+                                <h3> {{ $teamgro[$i-1]->poste->nom }}</h3>
+                            </div>
+                        </div>
+                    @endif
                 @else
                     <!-- single member -->
                     <div class="col-sm-4">

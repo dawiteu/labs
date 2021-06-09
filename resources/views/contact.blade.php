@@ -19,7 +19,7 @@
 	<!-- Page header end -->
 
     <!-- Google map -->
-	<div class="map" id="map-area"></div>
+	<div class="map" id="map-area" pos="{{$inf->position}}"></div>
 
     {!! $footer !!}
 

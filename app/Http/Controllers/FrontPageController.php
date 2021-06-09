@@ -96,4 +96,19 @@ class FrontPageController extends Controller
 
         return redirect()->route('pages.index')->with('success', 'Page services bien actualisée');
     }
+
+    public function updateContact(Request $request){
+        $tup = Pagecontact::first(); 
+
+        foreach($request->all() as $key => $value) {
+            if(($key != "_token") && ($key != "_method")){
+                $tup->$key = $value; 
+            }
+        }
+
+        $tup->save();
+        
+        return redirect()->route('pages.index')->with('success', 'Page contact bien actualisée');
+
+    }
 }

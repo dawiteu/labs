@@ -65,8 +65,9 @@ class FrontController extends Controller
 
     // FRONT PAGE CONTACT
     public function contact(){ 
+        $inf = Pagecontact::first(); 
         $footer = $this->footer();
-        return view('contact', compact('footer')); 
+        return view('contact', compact('footer', 'inf')); 
     }
 
     // front page contact SENDING FORM 

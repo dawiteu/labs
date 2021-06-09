@@ -49,14 +49,14 @@
                                             <input type="text" name="videolink" value="{{$infopage->videolink}}" class="w-full" /> <br/> 
                                             
                                             @error('videolink')
-                                               <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                                <br/> <span class="text-red-500">{{$message}}</span><br/>
                                             @enderror
                                             
                                             <label for="imagelinkfile">Ajouter une image: <br/><strong>Utilisez uniquement en cas de modification.</strong></label><br/>
                                             <input type="file" name="imagelinkfile" class="w-full" />
                                             
                                             @error('imagelinkfile')
-                                               <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                                <br/> <span class="text-red-500">{{$message}}</span><br/>
                                             @enderror
                                             
                                             {{-- <label for="imagelinktext">Image du net: <br/><strong>Utilisez uniquement en cas de modification.</strong></label><br/>
@@ -205,7 +205,7 @@
                                         <input type="text" name="t2" value="{{$infopage->t2}}" class="w-full" />
                                         <br/>
                                         @error('t2')
-                                           <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                            <br/> <span class="text-red-500">{{$message}}</span><br/>
                                         @enderror
                                         <div class="col m-2 bg-gray-300">
                                             <div class="col md:flex">
@@ -235,6 +235,92 @@
                                 </div>
                             </form>
                             
+                        @break
+                        {{-- CONTACT --}}
+                        @case("contact")
+                            <h3 class="text-xl m-4 text-center md:text-left"> Edit Page Contact (+ footer) </h3>
+                            <form action="{{route('pages.updatecontact')}}" method="POST">
+                                @csrf
+                                <div class="section">
+                                    {{-- Les coords pour la map:  --}}
+                                    <div class="col m-2 bg-gray-200 flex flex-col">
+                                        <label for="position">Position sur Google Maps: 
+                                            <p class="bg-gray-400">Astuce: sur google maps click droit sur l'endroit. </p>
+                                        </label>
+                                        <input type="text" name="position" value="{{$infopage->position}}"/>
+                                        @error('position')
+                                            <br/><span class="text-red-500">{{$message}} </span> <br/> 
+                                        @enderror
+                                    </div>
+                                    {{--  premier titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t1">Titre 1: (Contact) </label><br/>
+                                        <input type="text" name="t1" value="{{$infopage->t1}}" class="w-full" />
+                                        
+                                        @error('t1')
+                                        <br/>    <span class="text-red-500">{{$message}}</span> <br/>
+                                        @enderror
+
+                                        <label for="desc1">Description :</label><br/>
+                                        <textarea name="desc1" rows="10" cols="50"> {{$infopage->desc1}} </textarea>
+                                        <br/>
+                                        @error('desc1')
+                                                <span class="text-red-500">{{$message}}</span>
+                                        @enderror 
+                                        <br/>
+                                    </div>
+                                    
+                                    {{--  deuxième titre  --}}
+                                    <div class="col m-2 bg-gray-300">
+                                        <label for="t2">Titre 2: (Device)</label><br/>
+                                        <input type="text" name="t2" value="{{$infopage->t2}}" class="w-full" />
+                                        <br/>
+                                        @error('t2')
+                                            <br/> <span class="text-red-500">{{$message}}</span><br/>
+                                        @enderror
+                                        <div class="col m-2 bg-gray-300">
+                                            <div class="col md:flex">
+                                                <div class="w-full md:w-2/4 ">
+                                                    <label for="adresse">Adresse: </label><br/>
+                                                    <input type="text" name="adresse" value="{{$infopage->adresse}}" class="w-full" />
+                                                    <br/>
+                                                    @error('adresse')
+                                                            <span class="text-red-500">{{$message}}</span>
+                                                    @enderror 
+                                                <br/>
+                                                </div>
+                                                <div class="w-fulll md:w-2/4">
+                                                    <label for="tel">TEL:</label><br/>
+                                                    <input type="text" name="tel" value="{{$infopage->tel}}" class="w-full" />
+                                                    <br/>
+                                                    @error('tel')
+                                                            <span class="text-red-500">{{$message}}</span>
+                                                    @enderror 
+                                                    <br/>
+                                                </div>
+                                                <div class="w-fulll md:w-2/4">
+                                                    <label for="email">Email:</label><br/>
+                                                    <input type="email" name="email" value="{{$infopage->email}}" class="w-full" />
+                                                    <br/>
+                                                    @error('email')
+                                                            <span class="text-red-500">{{$message}}</span>
+                                                    @enderror 
+                                                    <br/>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col m-2 bg-gray-300">
+                                        <div class="col md:flex md:flex-col">
+                                            <label for="footer">Footer</label>
+                                            <input type="text" name="footer" value="{{$infopage->footer}}" />          
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center mt-7"><button type="submit" class="bg-green-400 p-2 rounded-sm">Valider la modification</button></div>
+                                </div>
+                            </form>
                         @break
                         @default
                             
