@@ -14,7 +14,7 @@ class Article extends Model
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class); 
+        return $this->hasMany(Comment::class)->where('valide', 1)->where('deleted', 0); //jamais trop sûr. 
     }
 
     public function categorie(){
@@ -24,4 +24,5 @@ class Article extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
 }

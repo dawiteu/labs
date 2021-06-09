@@ -15,9 +15,7 @@ class CreatePageservicesTable extends Migration
     {
         Schema::create('pageservices', function (Blueprint $table) {
             $table->id();
-            $table->string('t1'); 
-            $table->string('btn1text');
-            $table->string('btn1link'); 
+            $table->string('t1');
             $table->string('t2'); 
             $table->string('btn2text');
             $table->string('btn2link'); 

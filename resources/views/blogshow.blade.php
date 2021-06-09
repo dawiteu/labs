@@ -49,8 +49,14 @@
                                     <div class="post-content">
                                         <h2 class="post-title">{{$id->titre}}</h2>
                                         <div class="post-meta">
-                                            <a href="">{{ $id->categorie->nom }}</a>
-                                            <a href="">{{ count($id->tags) }}</a>
+                                            <a href="{{route('blog.showcat', $id->categorie->nom)}}">{{ $id->categorie->nom }}</a>
+                                            <a href="">
+                                                @forelse ($id->tags as $tag)
+                                                    <a style="all:unset;" href="{{route('blog.showtag', $tag->nom)}}">#{{ $tag->nom }}</a>
+                                                @empty
+                                                    <span>pas de tag...</span>
+                                                @endforelse
+                                            </a>
                                             <a href="">{{count($id->comments)}} Comments</a>
                                         </div>
                                         <p>{{ $id->description }} </p>

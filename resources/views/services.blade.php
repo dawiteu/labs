@@ -41,7 +41,7 @@
                 @endforeach
 			</div>
 			<div class="text-center">
-				<a href="{{$servinfo->btn1link}}" class="site-btn">{{$servinfo->btn1text}}</a>
+				{{ $servs->links() }}
 			</div>
 		</div>
 	</div>
@@ -71,7 +71,7 @@
                 <!-- Devices -->
 				<div class="col-md-4 col-sm-4 devices">
 					<div class="text-center">
-						<img src="img/device.png" alt="">
+						<img src="{{asset('img/device.png')}}" alt="">
 					</div>
 				</div>
                 <!-- feature item -->
@@ -97,45 +97,25 @@
 	<!-- features section end-->
 
     <!-- services card section-->
-	<div class="services-card-section spad">
+	<div class="services-card-section spad" id="services">
 		<div class="container">
 			<div class="row">
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-1.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-2.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+				@forelse ($posts as $art)
+					<!-- Single Card -->
+					<div class="col-md-4 col-sm-6">
+						<div class="sv-card">
+							<div class="card-img">
+								<img src="{{asset($art->image)}}" alt="">
+							</div>
+							<div class="card-text">
+								<h2>{{$art->titre}}</h2>
+								<p>{{ Str::limit($art->description, 25, '...') }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-12">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-3.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
+				@empty
+					<p>Rien à voir ici...</p>
+				@endforelse
 			</div>
 		</div>
 	</div>

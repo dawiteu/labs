@@ -177,7 +177,7 @@
                                         <br/>    <span class="text-red-500">{{$message}}</span> <br/>
                                         @enderror
 
-                                        <div class="col m-2 bg-gray-300 md:flex flex-wrap">
+                                        {{-- <div class="col m-2 bg-gray-300 md:flex flex-wrap">
                                     
                                             <div class="w-full md:w-2/4 ">
                                                 <label for="btn1text">button 1 titre:</label><br/>
@@ -195,7 +195,7 @@
                                                     <span class="text-red-500">{{$message}}</span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                     

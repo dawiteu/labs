@@ -105,7 +105,7 @@
                         <!-- single testimonial -->
                         <div class="testimonial">
                             <span>‘​‌‘​‌</span>
-                            <p>{{$test->description }} </p>
+                            <p style="min-height:144px;">{{$test->description }} </p>
                             <div class="client-info">
                                 <div class="avatar">
                                     <img src="{{ asset($test->author_image) }} " alt="{{ $test->author }}">

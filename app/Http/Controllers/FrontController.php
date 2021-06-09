@@ -40,7 +40,7 @@ class FrontController extends Controller
         $testims    = count(Testimontial::all()) > 0 ? Testimontial::orderBy('id', 'desc')->take(6)->get() : array_push($errors, 'Testimontials clients'); 
         
         $teamceo    = User::where('poste_id', '2')->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
-        $teamgro    = count(User::all()) >= 2 ? User::all()->random(2) : User::all(); 
+        $teamgro    = count(User::all()->where('active', 1)) >= 2 ? User::all()->where('active', 1)->random(2) : User::all()->where('active', 1); 
 
         $footer = $this->footer();
         
@@ -55,11 +55,12 @@ class FrontController extends Controller
     // FRONT PAGE SERVICES 
     public function services(){
         $servinfo = Pageservices::all()->first(); 
-        $servs    = Services::all()->random(9);
-        $serv2    = Services::all()->random(6); 
+        $servs    = Services::orderBy('id', 'desc')->paginate(9);
+        $serv2    = Services::orderBy('id', 'desc')->take(6)->get(); 
         
+        $posts    = Article::all()->random(3); 
         $footer = $this->footer();
-        return view('services', compact('servinfo', 'servs', 'serv2', 'footer')); 
+        return view('services', compact('servinfo', 'servs', 'serv2', 'posts', 'footer')); 
     }
 
 
@@ -88,7 +89,7 @@ class FrontController extends Controller
 
     // front page BLOG 
     public function blog(){ 
-        $arts = Article::paginate(3); 
+        $arts = Article::orderBy('id','desc')->paginate(3); 
         $cats = Categorie::all()->random(count(Categorie::all()));
         $tags = Tag::all(); 
         $footer = $this->footer(); 
