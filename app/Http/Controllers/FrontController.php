@@ -40,7 +40,7 @@ class FrontController extends Controller
         $homeinfo   = count(Pagehome::all()) > 0 ? Pagehome::all()->first() : array_push($errors, 'Contenu page home'); // titres et informations generales 
         $testims    = count(Testimontial::all()) > 0 ? Testimontial::orderBy('id', 'desc')->take(6)->get() : array_push($errors, 'Testimontials clients'); 
         
-        $teamceo    = User::where('poste_id', '2')->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
+        $teamceo    = User::where('poste_id', '2')->where('active', 1)->where('deleted',0)->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
         $teamgro    = count(User::all()->where('active', 1)) >= 2 ? User::all()->where('active', 1)->random(2) : User::all()->where('active', 1); 
 
         $footer = $this->footer();

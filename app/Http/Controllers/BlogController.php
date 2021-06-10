@@ -195,5 +195,116 @@ class BlogController extends Controller // Backend
             return redirect()->back()->with('error', "Cette opération n'est plus disponible");
         }
     }
+
+    // BLOG categories ;; 
+    public function crudblog(){
+        //pour le menu 
+        $arts = Article::where('deleted', 0)->paginate(4); 
+        $artovali = Article::where('deleted', 0)->where('valide', 0)->get(); 
+        $tovalide = Comment::where('deleted', 0)->where('valide', 0)->get();
+        $coms = Comment::where('deleted', 0)->get();
+
+        // les cats : 
+        $cats = Categorie::where('deleted', 0)->get(); //:paginate(15); 
+        return view('admin.blog.cat.index', compact('arts', 'coms','tovalide', 'artovali', 'cats'));
+    }
+
+    // BLOG cats 
+    public function crudcatstore(Request $request){
+        $request->validate([  "catname" => "required" ]); 
+
+        $cat = new Categorie(); 
+
+        $cat->nom       = $request->catname; 
+        $cat->deleted   = 0; // jamais trop sûr; 
+
+        $cat->save(); 
+
+        return redirect()->route('admin.blog.categorie')->with('success', 'Catégorie bien ajoutée');
+    }
+
+    public function crudcatedit(Categorie $categorie){
+        //pour le menu 
+        $arts = Article::where('deleted', 0)->paginate(4); 
+        $artovali = Article::where('deleted', 0)->where('valide', 0)->get(); 
+        $tovalide = Comment::where('deleted', 0)->where('valide', 0)->get();
+        $coms = Comment::where('deleted', 0)->get();
+        // les cats : 
+        $cats = Categorie::all(); //:paginate(15); 
+        return view('admin.blog.cat.edit', compact('categorie', 'arts', 'coms','tovalide', 'artovali', 'cats'));
+    }
+
+    public function crudcatupdate(Request $request, Categorie $categorie){
+        $request->validate([  "newcatname" => "required" ]); 
+
+        $categorie->nom = $request->newcatname; 
+        $categorie->save(); 
+        return redirect()->route('admin.blog.categorie')->with('success', 'Catégorie bien modifée');
+    }
+
+    public function crudcatdestroy(Categorie $categorie){
+        $categorie->deleted = 1; 
+        $categorie->save(); 
+        return redirect()->route('admin.blog.categorie')->with('success', 'Catégorie bien suprrimée');
+    }
+
+    //end cat (blog)
+
+    // tag
+
+    public function crudblogtag(){
+        //pour le menu 
+        $arts = Article::where('deleted', 0)->paginate(4); 
+        $artovali = Article::where('deleted', 0)->where('valide', 0)->get(); 
+        $tovalide = Comment::where('deleted', 0)->where('valide', 0)->get();
+        $coms = Comment::where('deleted', 0)->get();
+
+        // les cats : 
+        $tags = Tag::where('deleted', 0)->paginate(10); //:paginate(15); 
+        return view('admin.blog.tag.index', compact('arts', 'coms','tovalide', 'artovali', 'tags'));
+    }
+
+
+
+    public function crudtagstore(Request $request){
+        $request->validate([  "tagname" => "required" ]); 
+
+        $tag = new Tag(); 
+
+        $tag->nom       = $request->catname; 
+        $tag->deleted   = 0; // jamais trop sûr; 
+
+        $tag->save(); 
+
+        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien ajoutée');
+    }
+
+    public function crudtagedit(Tag $tag){
+        //pour le menu 
+        $arts = Article::where('deleted', 0)->paginate(4); 
+        $artovali = Article::where('deleted', 0)->where('valide', 0)->get(); 
+        $tovalide = Comment::where('deleted', 0)->where('valide', 0)->get();
+        $coms = Comment::where('deleted', 0)->get();
+        // les cats : 
+        $tags = Tag::all(); //:paginate(15); 
+        return view('admin.blog.cat.edit', compact('tag', 'arts', 'coms','tovalide', 'artovali', 'tags'));
+    }
+
+    public function crudtagupdate(Request $request, Tag $tag){
+        $request->validate([  "newcatname" => "required" ]); 
+
+        $tag->nom = $request->newtagname; 
+        $tag->save(); 
+        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien modifée');
+    }
+
+    public function crudtagdestroy(Tag $tag){
+        $tag->deleted = 1; 
+        $tag->save(); 
+        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien suprrimée');
+    }
+
+    //end tag (blog)
+
 }
 

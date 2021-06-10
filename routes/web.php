@@ -97,6 +97,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/blog/v/c/{comment}', [BlogController::class,'valideCom'])->name('admin.blog.validecom');
         Route::get('/admin/blog/r/c/{comment}', [BlogController::class,'refuseCom'])->name('admin.blog.refusecom');
 
+        // BLOG CATEGORIE (CRUD)
+        Route::get('/admin/blog/categ', [BlogController::class,'crudblog'])->name('admin.blog.categorie'); 
+        Route::post('/admin/blog/categ/store', [BlogController::class,'crudcatstore'])->name('admin.blog.categorie.store'); 
+        Route::get('/admin/blog/categorie/edit/{categorie}',[BlogController::class,'crudcatedit'])->name('admin.blog.categorie.edit');
+        Route::post('/admin/blog/categorie/update/{categorie}', [BlogController::class,'crudcatupdate'])->name('admin.blog.categorie.update');
+        Route::get('/admin/blog/categorie/delete/{categorie}', [BlogController::class,'crudcatdestroy'])->name('admin.blog.categorie.destroy');
+        
+        // BLOG TAGS (CRUD)
+        Route::get('/admin/blog/tag', [BlogController::class,'crudblogtag'])->name('admin.blog.tag'); 
+        Route::post('/admin/blog/tag/store', [BlogController::class,'crudtagstore'])->name('admin.blog.tag.store'); 
+        Route::get('/admin/blog/tag/edit/{tag}',[BlogController::class,'crudtagedit'])->name('admin.blog.tag.edit');
+        Route::post('/admin/blog/tag/update/{tag}', [BlogController::class,'crudtagupdate'])->name('admin.blog.tag.update');
+        Route::get('/admin/blog/tag/delete/{tag}', [BlogController::class,'crudtagdestroy'])->name('admin.blog.tag.destroy');
     
     });
 

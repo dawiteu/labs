@@ -11,7 +11,7 @@
                         <a href="{{route('admin.blog.create')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un article</li></a>
                         {{-- <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Modifier mes articles</li> --}}
                         @Webmaster
-                        <a href="#"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gérer catégories</li></a>
+                        <a href="{{route('admin.blog.categorie')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gérer catégories</li></a>
                         <a href="#"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gérer TAGS </li></a>
                         <a href="{{route('admin.blog.valide','articles')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation articles ({{ count($artovali) }}) </li></a>
                         <a href="{{route('admin.blog.valide','coms')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation comms ({{ count($tovalide)}}) </li></a>

@@ -18,7 +18,7 @@
                                 <p><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button> - Modifie le profil</p>
                                 <p><button class="bg-red-500 p-1 m-1  rounded" title="">X</button> - Supprime le profil</p>
                             </fieldset> 
-                        @Webmaster  
+                        @endWebmaster  
                     </h3> 
                     
                     <table class="tableusers">
@@ -34,7 +34,7 @@
                             <td class="hidden xl:table-cell">Description</td>
                             @Webmaster
                             <td>Action</td>
-                            @Webmaster
+                            @endWebmaster
                         </tr>
 
                         @foreach ($users as $user)
@@ -60,7 +60,7 @@
                                         <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime le profil">X</button> 
                                     @endif 
                                 </td>
-                                @Webmaster
+                                @endWebmaster
                             </tr>
                         @endforeach
                     </table>
