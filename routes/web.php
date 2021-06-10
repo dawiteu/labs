@@ -66,6 +66,8 @@ Route::middleware(['auth'])->group(function () {
                 
         // gestion newsletter 
         Route::get('/admin/newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.all');
+        Route::get('/admin/newsletter/send', [NewsletterController::class, 'sendmailForm'])->name('newsletter.sform'); 
+        Route::post('/admin/newsletter/sendmail', [NewsletterController::class,'sendmailsub'])->name('newsletter.sendmailsub');
 
         //gestion services: 
         Route::get('/admin/services/all', [ServicesController::class,'index'])->name('services.all'); 
@@ -80,10 +82,8 @@ Route::middleware(['auth'])->group(function () {
         //testimontials: 
         Route::get('/admin/testimontials/all', [TestimontialController::class,'index'])->name('testimontial.all');
 
-
         // Gestions des PAGES du front.  
         Route::get('/admin/frontpage/index', [FrontPageController::class, 'index'])->name('pages.index'); 
-        
         Route::get('/admin/frontpage/edit/{page}', [FrontPageController::class, 'edit'])->name('pages.edit'); 
         Route::post('/admin/front/update/home', [FrontPageController::class, 'updateHome'])->name('pages.updatehome');
         Route::post('/admin/front/update/services', [FrontPageController::class, 'updateServices'])->name('pages.updateservices');

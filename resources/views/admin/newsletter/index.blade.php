@@ -4,12 +4,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-xl m-4 text-center md:text-left">
-                        Gestion des emails dans le newsletter 
+                        Gestion des emails dans le newsletter <br/> TOTAL: {{count($newss)}} enregistrés. <br/><br/>
+                        <a href="{{route('newsletter.sform')}}" class="p-2 rounded-md bg-green-500 hover:bg-green-600">Envoyer une information</a>
                     </h3>
 
                     @if (count($newss) > 0)
-                        <table>
-                            <tr>
+                        <table class="w-full text-center">
+                            <tr class="underline font-bold">
                                 <td>Email</td>
                                 <td>Action</td>
                             </tr>
@@ -17,7 +18,7 @@
                                 <tr>
                                     <td>{{ $news->email }}</td>
                                     <td>
-                                        <a href="#" class="bg-red-200">Désinscrire</a>
+                                        <a href="{{route('newsunsub', $news->email)}}" class="bg-red-200">Désinscrire</a>
                                     </td>
                             @endforeach
                         </table>
