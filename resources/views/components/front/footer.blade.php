@@ -39,7 +39,7 @@
 								<div class="col-sm-12">
 									<select name="subject" style="background-color:#f6edfb; width:100%; padding-top:10px; padding-bottom:10px; margin-bottom:10px;">
 										@foreach ($subjects as $suj)
-											<option value="{{$suj->id}}">{{$suj->nom}}</option>
+											<option value="{{$suj->nom}}">{{$suj->nom}}</option>
 										@endforeach
 									</select>
 									<textarea name="message" placeholder="Message" style="resize:none!important;" maxlength="200"></textarea>

@@ -18,7 +18,7 @@
                         
                         <div class="col bg-gray-200">
 
-                            <label for="cat">Titre: </label>
+                            <label for="titre">Titre: </label>
 
                             <input type="text" name="titre" value="{{$article->titre}}" class="w-full">
                             

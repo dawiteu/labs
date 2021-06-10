@@ -102,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['redacteur'])->group(function () {
         Route::get('/admin/blog/index', [BlogController::class, 'index'])->name('admin.blog.index');
+        Route::get('/admin/blog/create', [BlogController::class, 'create'])->name('admin.blog.create');
+        
         Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('admin.blog.show'); 
         Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('admin.blog.edit'); 
         Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('admin.blog.update');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactSender;
 use App\Mail\NewsBienvSender;
 use App\Models\Article;
 use App\Models\Categorie;
@@ -78,12 +79,14 @@ class FrontController extends Controller
         if($request->has('submitcontactform')){ 
 
             $request->validate([
-                "name" => "required", 
-                "email"=> "required", 
-                "message" => "required"
+                "name"      => "required", 
+                "email"     => "required", 
+                "subject"   => "required",
+                "message"   => "required"
             ]);
     
-            dd('submit!');
+            Mail::to("admin@labs-studio.com")->send(new ContactSender($request)); 
+            return redirect()->route('front.index')->with('success', 'E mail bien envoyé');
         }
     }
 
@@ -201,10 +204,10 @@ class FrontController extends Controller
                 $email[0]->save();
                 return redirect()->route('front.index')->with('success', "unsub ok "); 
             }else{
-                return redirect()->route('front.home')->with('error', 'E-mail non trouvé'); 
+                return redirect()->route('front.index')->with('error', 'E-mail non trouvé'); 
             }
         }else{
-            return redirect()->route('front.home')->with('error', 'E-mail non trouvé'); 
+            return redirect()->route('front.index')->with('error', 'E-mail non trouvé'); 
         }
     }
 }

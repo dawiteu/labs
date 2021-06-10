@@ -8,7 +8,7 @@
                     <h3 class="text-xl m-4 text-center md:text-left">Gestion du Blog</h3>
     
                     <ul class="flex justify-center">
-                        <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un article</li>
+                        <a href="{{route('admin.blog.create')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un article</li></a>
                         {{-- <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Modifier mes articles</li> --}}
                         @Webmaster
                         <a href="{{route('admin.blog.valide','articles')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation articles ({{ count($artovali) }}) </li></a>

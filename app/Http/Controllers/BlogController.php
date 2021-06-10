@@ -22,8 +22,9 @@ class BlogController extends Controller // Backend
     }
 
     public function create(){
-        
-        return view();
+        $arts = Categorie::where('deleted', 0)->get(); 
+        $tags = Tag::where('deleted', 0)->get();  
+        return view('admin.blog.create', compact('arts', 'tags'));
     }
 
     public function show(Article $article){
