@@ -88,6 +88,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/front/update/home', [FrontPageController::class, 'updateHome'])->name('pages.updatehome');
         Route::post('/admin/front/update/services', [FrontPageController::class, 'updateServices'])->name('pages.updateservices');
         Route::post('/admin/front/update/contact', [FrontPageController::class, 'updateContact'])->name('pages.updatecontact');
+
+        // BLOG mais validation (que pour admin)  POSTES 
+        Route::get('/admin/blog/v/a/{article}', [BlogController::class,'valideArticle'])->name('admin.blog.validepost');
+        Route::get('/admin/blog/r/a/{article}', [BlogController::class,'refuseArticle'])->name('admin.blog.refusepost');
+        
+        // BLOG mais validation (que pour admin)  COMMENATAIRES 
+        Route::get('/admin/blog/v/c/{comment}', [BlogController::class,'valideCom'])->name('admin.blog.validecom');
+        Route::get('/admin/blog/r/c/{comment}', [BlogController::class,'refuseCom'])->name('admin.blog.refusecom');
+
+    
     });
 
     Route::middleware(['redacteur'])->group(function () {
@@ -95,6 +105,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/blog/show/{article}', [BlogController::class, 'show'])->name('admin.blog.show'); 
         Route::get('/admin/blog/edit/{article}', [BlogController::class, 'edit'])->name('admin.blog.edit'); 
         Route::post('/admin/blog/update/{article}', [BlogController::class,'update'])->name('admin.blog.update');
+        Route::post('/admin/blog/delete/{article}', [BlogController::class,'destroy'])->name('admin.blog.destroy');
+        Route::get('/admin/blog/valide/{valide}', [BlogController::class,'valide'])->name('admin.blog.valide');
     }); 
     
         

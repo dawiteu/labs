@@ -18,7 +18,7 @@
                             @endforelse
                         </p>
 
-                        <p class="m-2 bg-gray-200"> {{$article->description }} </p>
+                        <p class="m-2 bg-gray-200"> {!! $article->description !!} </p>
 
 
                         <p>Nombre de commentaires: (TOTAL: {{count($article->comments)}})</p>

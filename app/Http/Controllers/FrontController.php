@@ -58,7 +58,7 @@ class FrontController extends Controller
         $servs    = Services::orderBy('id', 'desc')->paginate(9);
         $serv2    = Services::orderBy('id', 'desc')->take(6)->get(); 
         
-        $posts    = Article::all()->random(3); 
+        $posts    = Article::all()->where('deleted', 0)->random(3); 
         $footer = $this->footer();
         return view('services', compact('servinfo', 'servs', 'serv2', 'posts', 'footer')); 
     }
@@ -89,7 +89,7 @@ class FrontController extends Controller
 
     // front page BLOG 
     public function blog(){ 
-        $arts = Article::orderBy('id','desc')->paginate(3); 
+        $arts = Article::orderBy('id','desc')->where('deleted', 0)->where('valide', 1)->paginate(3); 
         $cats = Categorie::all()->random(count(Categorie::all()));
         $tags = Tag::all(); 
         $footer = $this->footer(); 
@@ -104,7 +104,7 @@ class FrontController extends Controller
             $cats  = Categorie::all();
             $tags = Tag::all(); 
             $footer = $this->footer();
-            $results = Article::where('titre', 'LIKE', "%" . $q . "%")->get();
+            $results = Article::where('deleted', 0)->where('titre', 'LIKE', "%" . $q . "%")->get();
             return view('blogshow', compact('route', 'results', 'cats','tags', 'footer', 'q'));
         }
     }

@@ -25,8 +25,8 @@ class CommentFactory extends Factory
             "auteur"        => $this->faker->name(),
             "auteur_email"  => $this->faker->email,
             "message"       => $this->faker->text(50),
-            "valide"        => 1, // les factory passent;  
-            "deleted"       => 0, 
+            "valide"        => $this->faker->numberBetween(0, 1), // les factory passent;  
+            "deleted"       => $this->faker->numberBetween(0, 1), 
             "article_id"    => $this->faker->numberBetween(1, 5)
         ];
     }

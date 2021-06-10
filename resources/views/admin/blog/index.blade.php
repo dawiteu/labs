@@ -9,13 +9,23 @@
     
                     <ul class="flex justify-center">
                         <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un article</li>
+                        {{-- <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Modifier mes articles</li> --}}
+                        @Webmaster
+                        <a href="{{route('admin.blog.valide','articles')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation articles ({{ count($artovali) }}) </li></a>
+                        <a href="{{route('admin.blog.valide','coms')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation comms ({{ count($tovalide)}}) </li></a>
+                        @endWebmaster
                     </ul>
-
+                    
+                    {{-- @Webmaster --}}
                     <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left rounded">
                         <legend class="underline">!! Notes importante:</legend>
                         <p><button class="bg-green-500 p-1 m-1  rounded">S</button> - Regarde l'article en détails </p>
                         <p><button class="bg-yellow-500 p-1 m-1  rounded" >M</button> - Modifie l'article </p>
                         <p><button class="bg-red-500 p-1 m-1  rounded" >X</button> - Supprime l'article</p>
+                        <p class="bg-green-200">Article en attente de validation</p>
+                        {{-- @Webmaster
+                        <p><button class="p-1 m-1 rounded" >Com ATT</button>Commantaire en attente</p>
+                        @endWebmaster --}}
                     </fieldset> 
 
                     <table class="w-full">
@@ -26,22 +36,25 @@
                             <td>Action</td>
                         </tr>
                         @forelse ($arts as $art)
-                            <tr>
-                                <td>{{ $art->id }}</td>
-                                <td><img src="{{ asset($art->image) }}" alt="{{ $art->titre }}" style="max-height:50px;"></td>
-                                <td>{{ $art->titre }}</td>
-                                <td>
-                                    <a href="{{route('admin.blog.show', $art)}}">
-                                        <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde l'article en détails">S</button>                        
-                                    </a>
-                                    <a href="{{route('admin.blog.edit', $art)}}">
-                                        <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie l'article">M</button>
-                                    </a>
-                                    <a href="#">
-                                        <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime l'article">X</button> 
-                                    </a>
-                                </td>
-                            </tr>
+                            @if ($art->user_id == Auth::user()->id || Auth::user()->role_id < 3)                                
+                                <tr class="{{$art->valide == 0 ? 'bg-green-200' : ''}}">
+                                    <td>{{ $art->id }}</td>
+                                    <td><img src="{{ asset($art->image) }}" alt="{{ $art->titre }}" style="max-height:50px;"></td>
+                                    <td>{{ $art->titre }}</td>
+                                    <td>
+                                        <a href="{{route('admin.blog.show', $art)}}">
+                                            <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde l'article en détails">S</button>                        
+                                        </a>
+                                        <a href="{{route('admin.blog.edit', $art)}}">
+                                            <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie l'article">M</button>
+                                        </a>
+                                        <form action="{{route('admin.blog.destroy', $art)}}" method="POST" class="inline">
+                                            @csrf
+                                            <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime l'article">X</button> 
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endif
                         @empty
                             
                         @endforelse
@@ -50,9 +63,9 @@
                     <div class="page-pagination">
                     {{ $arts->links('vendor/pagination/default') }}
                     </div>
+                    {{-- @endWebmaster --}}
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
-                           
+</x-app-layout>                     

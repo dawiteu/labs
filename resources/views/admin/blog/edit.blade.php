@@ -15,14 +15,27 @@
                             <input type="file" name="newimg" />
                         </div>
 
+                        
                         <div class="col bg-gray-200">
-                        <label for="cat">Catégorie: </label>
+
+                            <label for="cat">Titre: </label>
+
+                            <input type="text" name="titre" value="{{$article->titre}}" class="w-full">
+                            
+                        </div>
+
+                        <div class="col bg-gray-200">
+
+                            <label for="cat">Catégorie: </label>
+
                             <select name="cat">
                                 @foreach ($cats as $cat)
                                     <option value="{{$cat->id}}">{{$cat->nom}}</option>
                                 @endforeach
                             </select>
+
                         </div>
+
                         <div class="col bg-gray-200">
                         <label for="tags">Tags: </label> <br/> 
                             <div class="grid grid-flow-col grid-rows-3">
@@ -57,5 +70,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
-                           
+</x-app-layout>                   

@@ -38,5 +38,6 @@ class AuthServiceProvider extends ServiceProvider
             //dd(Auth::user()->id, $online->id, $user->id); 
             //return ($online->role_id == 1 || $online->role_id == 2) || ($online == $user); 
         }); 
+        
     }
 }
