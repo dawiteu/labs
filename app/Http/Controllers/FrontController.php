@@ -177,10 +177,14 @@ class FrontController extends Controller
 
         if($count == 1){
             // je voulais faire une validation "if email exist --> t\'es deja inscrit, mais c'est pas secu. 
-            $exist[0]->subscribe = 1; 
-            $exist[0]->save(); 
-            Mail::to($request->newsemail)->send(new NewsBienvSender($request)); 
-            return redirect()->back()->with('success','E-mail bien reenregistrer dans l newsletter !'); 
+            if($exist[0]->subscribe = 1){
+                return redirect()->back()->with('error','Nous etes deja inscrit ds le news'); 
+            }else{
+                $exist[0]->subscribe = 1;
+                $exist[0]->save(); 
+                Mail::to($request->newsemail)->send(new NewsBienvSender($request)); 
+                return redirect()->back()->with('success','E-mail bien reenregistrer dans l newsletter !'); 
+            }
         }else{
             $newnewsemail = new Newsletter(); 
             $newnewsemail->email = $request->newsemail;

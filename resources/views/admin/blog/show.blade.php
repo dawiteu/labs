@@ -4,6 +4,8 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-xl m-4 text-center md:text-left">Gestion du Blog :: Regarde l'article: {{ $article->id }} </h3>
+
+                    {!! $article->valide == 0 ? "<p class='text-red-500'> Cet article n'est pas encore validé. </p>" : '' !!}
                         
                     <div class="text-center md:text-left">
                         <img src="{{asset($article->image)}}" alt="{{$article->titre}}" />

@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('titre'); 
             $table->longText('description'); 
             $table->integer('valide')->default(0); 
-            $table->integer('deleted')->OnDelete('cascade');
+            $table->integer('deleted')->OnDelete('cascade')->default(0);
             $table->foreignId('user_id')->constrained()->OnDelete('cascade');
             $table->foreignId('categorie_id')->constrained()->OnDelete('cascade'); 
             $table->timestamps();

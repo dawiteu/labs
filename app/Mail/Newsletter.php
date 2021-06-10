@@ -10,15 +10,15 @@ use Illuminate\Queue\SerializesModels;
 class Newsletter extends Mailable
 {
     use Queueable, SerializesModels;
-    public $mail; 
+    //public $mail; 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct()
     {
-        $this->mail = $request; 
+       // $this->mail = $request; 
     }
 
     /**
