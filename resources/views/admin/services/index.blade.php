@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{asset('css/style.css')}}">
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -32,7 +33,9 @@
                         </table>
 
                         <div class="mt-3">
-                            {{ $services->links() }}
+                            <div class="pagination">
+                                {{ $services->links('vendor/pagination/default') }}
+                            </div>
                         </div>
                     @else
                         <p>Pas de services enregistré..</p>

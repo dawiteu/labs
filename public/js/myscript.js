@@ -8,9 +8,7 @@ $(function(){
     }); 
 
 
-
-
-    // resultats recherche Icones dans la DB. 
+    // resultats recherche Icones dans la var. 
     let tab = []; 
 
     if($("#query")){
@@ -30,48 +28,17 @@ $(function(){
     }
 
     if($("#results")){
-
         let childs = $("#results").children(); 
-
         childs.each(function (i, child){
             tab[i] = child.getAttribute('data'); 
         });
-
         console.log(tab); 
     
         $(".selecticon").on("click", function() {
             let newicon = $(this).attr('data');
-            let conf=confirm(`Confirmez-vous le choix de cette icone? (${newicon}) `);
-            if(conf){
-                navigator.clipboard.writeText(newicon);
-    
-                let x = setTimeout(() => {
-                    if(navigator.clipboard.writeText(newicon)){
-                        clearTimeout(x);
-                        window.close();
-                    }
-                }, 300);
-            }
+            $("#setnewicon").val(newicon);
+            $("#displnewicon").attr('class', newicon);
+            toggleModal();
         });
     }
-
-    if($("#setnewicon")){ 
-        window.onfocus = function() { 
-            navigator.clipboard.readText().then(function(text){
-                console.log(text);
-                let auth = ["fas", "far", "fab"]; 
-                let parse = text.split(" "); 
-                setTimeout(async() =>  {
-                    if(parse){
-                        if(auth.includes(parse[0])){
-                            $("#setnewicon").val(text);
-                            $("#displnewicon").attr('class', text);
-                        }
-                    }  
-                }, 2000)
-
-                
-            });
-        };
-    };
 });

@@ -18,7 +18,8 @@ class ServicesController extends Controller
     }
 
     public function create(){
-        return view('admin.services.add'); 
+        $allservs = IconServiceProvider::allIcons();
+        return view('admin.services.add', compact('allservs')); 
     }
 
     public function store(Request $request, Services $service){
@@ -38,7 +39,7 @@ class ServicesController extends Controller
 
         $service->save(); 
 
-        return redirect()->route('services.all')->with('success', 'Service bien modifié'); 
+        return redirect()->route('services.all')->with('success', 'Service bien ajouté'); 
     }
 
     public function edit(Services $service){
