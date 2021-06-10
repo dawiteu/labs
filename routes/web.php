@@ -4,6 +4,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\PosteController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\TestimontialController;
 use App\Http\Controllers\UserController;
@@ -64,12 +66,21 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
         Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
                 
+
         // gestion USER 2 (ROLES ET POSTES )
-        Route::get('/admin/user/role', [UserController::class,'crudroleindex'])->name('admin.user.roleindex'); 
-        Route::post('/admin/user/role/store', [UserController::class,'crudrolestore'])->name('admin.user.rolestore');
-        Route::get('/admin/user/role/edit/{role}',[UserController::class,'crudroleedit'])->name('admin.user.roleedit');
-        Route::post('/admin/user/role/update/{role}', [UserController::class,'crudroleupdate'])->name('admin.user.roleupdate');
-        Route::get('/admin/user/role/destroy/{role}',[UserController::class,'crudroledestroy'])->name('admin.user.roledestroy'); 
+        Route::get('/admin/role', [RoleController::class,'index'])->name('role.index'); 
+        Route::post('/admin/role/store', [RoleController::class,'store'])->name('role.store');
+        Route::get('/admin/role/edit/{role}',[RoleController::class,'edit'])->name('role.edit');
+        Route::post('/admin/role/update/{role}', [RoleController::class,'update'])->name('role.update');
+        Route::get('/admin/role/destroy/{role}',[RoleController::class,'destroy'])->name('role.destroy'); 
+
+
+        Route::get('/admin/postes', [PosteController::class,'index'])->name('postes.index'); 
+        Route::get('/admin/postes/destroy/{poste}', [PosteController::class,'destroy'])->name('postes.destroy');
+        Route::post('/admin/poste/store', [PosteController::class,'store'])->name('postes.store');
+        Route::get('/admin/postes/edit/{poste}', [PosteController::class,'edit'])->name('postes.edit');
+        Route::post('/admin/poste/update/{poste}', [PosteController::class,'update'])->name('postes.update');
+
 
         // gestion newsletter 
         Route::get('/admin/newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.all');
