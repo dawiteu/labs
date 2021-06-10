@@ -69,7 +69,7 @@ class UserController extends Controller
         return view('admin.user.toactivate', compact('ustoacts'));
     }
 
-    public function actuser(User $user, $proced){
+    public function actuser(User $user, $proced){ //activateur d'user 
 
         $this->authorize('isWebMaster', Auth::user()); 
 
@@ -136,4 +136,41 @@ class UserController extends Controller
     }
 
 
+    // crud roles et postes
+
+    // roles
+
+    public function crudroleindex(){
+        $roles = Role::where('deleted', 0)->get();
+        return view('admin.user.roles.index', compact('roles')); 
+    }
+
+    public function crudrolestore(Request $request){
+        $request->validate([  "rolename" => "required" ]); 
+        $role = new Role(); 
+        $role->nom       = $request->rolename; 
+        $role->deleted   = 0; // jamais trop sûr; 
+        $role->save(); 
+
+        return redirect()->route('admin.user.roleindex')->with('success', 'role bien ajouté');
+    }
+
+    public function crudroleedit(Role $role){
+        $roles = Role::where('deleted', 0)->get();
+        return view('admin.user.roles.edit', compact('roles', 'role')); 
+    }
+
+    public function crudroleupdate(Request $request, Role $role){
+        $request->validate([  "rolename" => "required" ]); 
+
+        $role->nom = $request->rolename; 
+        $role->save(); 
+        return redirect()->route('admin.user.roleindex')->with('success', 'role bien modifée');
+    }
+
+    public function crudroledestroy(Role $role){
+        $role->deleted = 1; 
+        $role->save(); 
+        return redirect()->route('admin.user.roleindex')->with('success', 'role bien suprrimée');
+    }
 }

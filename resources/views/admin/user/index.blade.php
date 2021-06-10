@@ -3,15 +3,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3 class="text-xl m-4 text-center md:text-left">
-                        Liste de tous les membres <br/>
+                        <h3 class="text-xl m-4 text-center md:text-left">
+                        Gestion des membres <br/></h3> 
                         {{-- {{ dd( request()->is('admin/user/*')  ? 'oui' : 'non' ) }} --}}
                         @Webmaster
-                            <div class="flex flex-wrap justify-center md:justify-start">
-                                <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 m-2 p-1 rounded-sm">Ajouter un membre</a>
-
-                                <a href="{{route('user.act')}}" class="bg-purple-400 m-2 hover:bg-purple-600 p-1 rounded-sm">Liste d'activation</a>
-                            </div> 
+                            <ul class="flex md:flex-row flex-col justify-center">
+                                <a href="{{route('user.create')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un membre</li></a>
+                                <a href="{{route('admin.user.roleindex')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion rôles</li></a>
+                                <a href="#" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion postes</li></a>
+                                <a href="{{route('user.act')}}" class="m-2  p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Liste d'activation</li></a>
+                            </ul>
+                            
                             <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left rounded">
                                 <legend class="underline">!! Notes importante:</legend>
                                 <p><button class="bg-green-500 p-1 m-1  rounded">S</button> - Regarde le profil en détails </p>
@@ -19,8 +21,9 @@
                                 <p><button class="bg-red-500 p-1 m-1  rounded" title="">X</button> - Supprime le profil</p>
                             </fieldset> 
                         @endWebmaster  
-                    </h3> 
                     
+                    <h3 class="text-xl m-4 text-center md:text-left">
+                        Liste de tous les membres <br/></h3> 
                     <table class="tableusers">
                         <tr>
                             <td>#</td>

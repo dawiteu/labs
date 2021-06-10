@@ -64,6 +64,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/usertoact', [UserController::class, 'actlist'])->name('user.act'); 
         Route::get('/admin/actuser/{user}/{proced}', [UserController::class, 'actuser'])->name('user.activate'); 
                 
+        // gestion USER 2 (ROLES ET POSTES )
+        Route::get('/admin/user/role', [UserController::class,'crudroleindex'])->name('admin.user.roleindex'); 
+        Route::post('/admin/user/role/store', [UserController::class,'crudrolestore'])->name('admin.user.rolestore');
+        Route::get('/admin/user/role/edit/{role}',[UserController::class,'crudroleedit'])->name('admin.user.roleedit');
+        Route::post('/admin/user/role/update/{role}', [UserController::class,'crudroleupdate'])->name('admin.user.roleupdate');
+        Route::get('/admin/user/role/destroy/{role}',[UserController::class,'crudroledestroy'])->name('admin.user.roledestroy'); 
+
         // gestion newsletter 
         Route::get('/admin/newsletter/all', [NewsletterController::class, 'index'])->name('newsletter.all');
         Route::get('/admin/newsletter/send', [NewsletterController::class, 'sendmailForm'])->name('newsletter.sform'); 
