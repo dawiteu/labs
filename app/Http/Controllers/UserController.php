@@ -24,8 +24,8 @@ class UserController extends Controller
 
     public function create(){
         $this->authorize('isAdmin', Auth::user()); 
-        $roles = Role::all(); 
-        $postes = Poste::all();
+        $roles = Role::where('deleted', 0)->get(); 
+        $postes = Poste::where('deleted', 0)->get();
         return view('admin.user.create', compact('roles', 'postes')); 
     }
 
@@ -93,8 +93,8 @@ class UserController extends Controller
 
     public function edit(User $user){ 
         if(Auth::user()->id ==  $user->id  || Auth::user()->role_id <= 2){
-            $roles  = Role::all(); 
-            $postes = Poste::all(); 
+            $roles  = Role::where('deleted', 0)->get(); 
+            $postes = Poste::where('deleted', 0)->get(); 
             return view('admin.user.edit', compact('user', 'roles', 'postes')); 
         }else{
             return redirect()->route('dashboard')->with('error','Access refusé'); 
@@ -134,5 +134,5 @@ class UserController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Modifications bien enregistrées'); 
     }
-    
+
 }

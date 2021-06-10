@@ -9,8 +9,8 @@
                         @Webmaster
                             <ul class="flex md:flex-row flex-col justify-center">
                                 <a href="{{route('user.create')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un membre</li></a>
-                                <a href="{{route('admin.user.roleindex')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion rôles</li></a>
-                                <a href="#" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion postes</li></a>
+                                <a href="{{route('role.index')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion rôles</li></a>
+                                <a href="{{route('postes.index')}}" class=" m-2 p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gestion postes</li></a>
                                 <a href="{{route('user.act')}}" class="m-2  p-1 rounded-sm"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Liste d'activation</li></a>
                             </ul>
                             

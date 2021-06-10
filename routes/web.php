@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\FrontPageController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimontialController;
 use App\Http\Controllers\UserController;
 use App\Models\Newsletter;
@@ -98,7 +100,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/services/create', [ServicesController::class,'create'])->name('service.create');  
 
         //testimontials: 
-        Route::get('/admin/testimontials/all', [TestimontialController::class,'index'])->name('testimontial.all');
+        Route::get('/admin/testimontials/', [TestimontialController::class,'index'])->name('testimontial.all');
+        Route::get('/admin/testimontials/create', [TestimontialController::class,'create'])->name('testimontial.create');
+        Route::post('/admin/testimontials/store', [TestimontialController::class,'store'])->name('testimontial.store'); 
+        Route::get('/admin/testimontials/edit/{testimontial}',[TestimontialController::class,'edit'])->name('testimontial.edit');
+        Route::post('/admin/testimontials/update/{testimontial}', [TestimontialController::class,'update'])->name('testimontial.update');
+        Route::get('/admin/testimontials/delete/{testimontial}', [TestimontialController::class,'destroy'])->name('testimontial.destroy');
 
         // Gestions des PAGES du front.  
         Route::get('/admin/frontpage/index', [FrontPageController::class, 'index'])->name('pages.index'); 
@@ -116,19 +123,19 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/blog/r/c/{comment}', [BlogController::class,'refuseCom'])->name('admin.blog.refusecom');
 
         // BLOG CATEGORIE (CRUD)
-        Route::get('/admin/blog/categ', [BlogController::class,'crudblog'])->name('admin.blog.categorie'); 
-        Route::post('/admin/blog/categ/store', [BlogController::class,'crudcatstore'])->name('admin.blog.categorie.store'); 
-        Route::get('/admin/blog/categorie/edit/{categorie}',[BlogController::class,'crudcatedit'])->name('admin.blog.categorie.edit');
-        Route::post('/admin/blog/categorie/update/{categorie}', [BlogController::class,'crudcatupdate'])->name('admin.blog.categorie.update');
-        Route::get('/admin/blog/categorie/delete/{categorie}', [BlogController::class,'crudcatdestroy'])->name('admin.blog.categorie.destroy');
+        Route::get('/admin/categorie', [CategorieController::class,'index'])->name('categorie.index'); 
+        Route::post('/admin/categorie/store', [CategorieController::class,'store'])->name('categorie.store'); 
+        Route::get('/admin/categorie/edit/{categorie}',[CategorieController::class,'edit'])->name('categorie.edit');
+        Route::post('/admin/categorie/update/{categorie}', [CategorieController::class,'update'])->name('categorie.update');
+        Route::get('/admin/categorie/delete/{categorie}', [CategorieController::class,'destroy'])->name('categorie.destroy');
         
         // BLOG TAGS (CRUD)
-        Route::get('/admin/blog/tag', [BlogController::class,'crudblogtag'])->name('admin.blog.tag'); 
-        Route::post('/admin/blog/tag/store', [BlogController::class,'crudtagstore'])->name('admin.blog.tag.store'); 
-        Route::get('/admin/blog/tag/edit/{tag}',[BlogController::class,'crudtagedit'])->name('admin.blog.tag.edit');
-        Route::post('/admin/blog/tag/update/{tag}', [BlogController::class,'crudtagupdate'])->name('admin.blog.tag.update');
-        Route::get('/admin/blog/tag/delete/{tag}', [BlogController::class,'crudtagdestroy'])->name('admin.blog.tag.destroy');
-    
+        Route::get('/admin/tag', [TagController::class,'index'])->name('tag.index'); 
+        Route::post('/admin/tag/store', [TagController::class,'store'])->name('tag.store'); 
+        Route::get('/admin/tag/edit/{tag}',[TagController::class,'edit'])->name('tag.edit');
+        Route::post('/admin/tag/update/{tag}', [TagController::class,'update'])->name('tag.update');
+        Route::get('/admin/tag/delete/{tag}', [TagController::class,'destroy'])->name('tag.destroy');
+
     });
 
     Route::middleware(['redacteur'])->group(function () {

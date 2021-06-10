@@ -36,11 +36,11 @@ class FrontController extends Controller
         $errors = []; 
         $logo       = asset("img/big-logo.png"); 
         $carous     = Pagehomecarousel::all(); // caruosel 
-        $rservices  = count(Services::all()) > 0 ? [ Services::all()->random(3) , Services::all()->random(9) ] : array_push($errors, 'services');
+        $rservices  = count(Services::where('disabled', 0)->get()) > 0 ? [ Services::where('disabled', 0)->get()->random(3) , Services::where('disabled',0)->get()->random(9) ] : array_push($errors, 'services');
         $homeinfo   = count(Pagehome::all()) > 0 ? Pagehome::all()->first() : array_push($errors, 'Contenu page home'); // titres et informations generales 
-        $testims    = count(Testimontial::all()) > 0 ? Testimontial::orderBy('id', 'desc')->take(6)->get() : array_push($errors, 'Testimontials clients'); 
+        $testims    = count(Testimontial::where('disabled', 0)->get()) > 0 ? Testimontial::where('disabled', 0)->orderBy('id', 'desc')->take(6)->get() : array_push($errors, 'Testimontials clients'); 
         
-        $teamceo    = User::where('poste_id', '2')->where('active', 1)->where('deleted',0)->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
+        $teamceo    = User::where('poste_id', '2')->where('active', 1)->where('deleted', 0)->latest()->first() == null ? 'noceo' : User::where('poste_id', '2')->latest()->first(); 
         $teamgro    = count(User::all()->where('active', 1)) >= 2 ? User::all()->where('active', 1)->random(2) : User::all()->where('active', 1); 
 
         $footer = $this->footer();

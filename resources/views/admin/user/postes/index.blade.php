@@ -41,7 +41,7 @@
                                         <p>{{$post->nom }} </p>
                                         <div class="flex"> 
                                             <p><a href="{{route('postes.edit', $post)}}"><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button></a></p>
-                                            {{-- <p><a href="{{route('admin.user.roledestroy', $role)}}"><button class="bg-red-500 p-1 m-1  rounded" title="">X</button></a></p> --}}
+                                            <p><a href="{{route('role.destroy', $post)}}"><button class="bg-red-500 p-1 m-1  rounded" title="">X</button></a></p>
                                         </div>
                                     </div>
                                 @empty

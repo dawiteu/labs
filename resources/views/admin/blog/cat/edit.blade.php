@@ -11,8 +11,8 @@
                         <a href="{{route('admin.blog.create')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Ajouter un article</li></a>
                         {{-- <li class="m-3 p-3 bg-green-400 hover:bg-green-600">Modifier mes articles</li> --}}
                         @Webmaster
-                        <a href="{{route('admin.blog.categorie')}}"><li class="m-3 p-3 bg-green-600 hover:bg-green-400">Gérer catégories</li></a>
-                        <a href="{{route('admin.blog.tag')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gérer TAGS </li></a>
+                        <a href="{{route('categorie.index')}}"><li class="m-3 p-3 bg-green-600 hover:bg-green-400">Gérer catégories</li></a>
+                        <a href="{{route('tag.index')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Gérer TAGS </li></a>
                         <a href="{{route('admin.blog.valide','articles')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation articles ({{ count($artovali) }}) </li></a>
                         <a href="{{route('admin.blog.valide','coms')}}"><li class="m-3 p-3 bg-green-400 hover:bg-green-600">Validation comms ({{ count($tovalide)}}) </li></a>
                         @endWebmaster
@@ -20,7 +20,7 @@
 
                     <div class="w-full flex md:flex-row flex-col justify-center">
                         <div class="col m-1 w-full">
-                            <form action="{{route('admin.blog.categorie.update', $categorie)}}" method="POST" class="text-center">
+                            <form action="{{route('categorie.update', $categorie)}}" method="POST" class="text-center">
                                 @csrf
                                 <input type="text" name="newcatname" value="{{$categorie->nom}}" />
                                 <input type="submit" value="Modifier >>" class="p-2 rounded-sm bg-gray-300" />
@@ -38,8 +38,8 @@
                                     <div class="m-1 bg-purple-200 flex justify-between">
                                         <p>{{$cat->nom }} </p>
                                         <div class="flex"> 
-                                            <p><a href="{{route('admin.blog.categorie.edit', $cat)}}"><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button></a></p>
-                                            <p><a href="{{route('admin.blog.categorie.destroy', $cat)}}"><button class="bg-red-500 p-1 m-1  rounded" title="">X</button></a></p>
+                                            <p><a href="{{route('categorie.edit', $cat)}}"><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button></a></p>
+                                            <p><a href="{{route('categorie.destroy', $cat)}}"><button class="bg-red-500 p-1 m-1  rounded" title="">X</button></a></p>
                                         </div>
                                     </div>
                                 @empty
