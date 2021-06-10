@@ -323,7 +323,7 @@
                             </form>
                         @break
                         @default
-                            
+                            <p class="text-red-500">Erreur 404..</p>
                     @endswitch
 
 

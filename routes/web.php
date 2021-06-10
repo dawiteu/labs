@@ -114,6 +114,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/front/update/services', [FrontPageController::class, 'updateServices'])->name('pages.updateservices');
         Route::post('/admin/front/update/contact', [FrontPageController::class, 'updateContact'])->name('pages.updatecontact');
 
+        // sujets contact FROM mail 
+
         // BLOG mais validation (que pour admin)  POSTES 
         Route::get('/admin/blog/v/a/{article}', [BlogController::class,'valideArticle'])->name('admin.blog.validepost');
         Route::get('/admin/blog/r/a/{article}', [BlogController::class,'refuseArticle'])->name('admin.blog.refusepost');

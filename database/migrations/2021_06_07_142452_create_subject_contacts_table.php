@@ -16,6 +16,7 @@ class CreateSubjectContactsTable extends Migration
         Schema::create('subject_contacts', function (Blueprint $table) {
             $table->id();
             $table->string('nom'); 
+            $table->integer('deleted')->default(0);
             $table->timestamps();
         });
     }
