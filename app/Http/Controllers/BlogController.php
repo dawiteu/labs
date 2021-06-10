@@ -271,12 +271,12 @@ class BlogController extends Controller // Backend
 
         $tag = new Tag(); 
 
-        $tag->nom       = $request->catname; 
+        $tag->nom       = $request->tagname; 
         $tag->deleted   = 0; // jamais trop sûr; 
 
         $tag->save(); 
 
-        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien ajoutée');
+        return redirect()->route('admin.blog.tag')->with('success', 'tag  bien ajoutée');
     }
 
     public function crudtagedit(Tag $tag){
@@ -286,22 +286,22 @@ class BlogController extends Controller // Backend
         $tovalide = Comment::where('deleted', 0)->where('valide', 0)->get();
         $coms = Comment::where('deleted', 0)->get();
         // les cats : 
-        $tags = Tag::all(); //:paginate(15); 
-        return view('admin.blog.cat.edit', compact('tag', 'arts', 'coms','tovalide', 'artovali', 'tags'));
+        $tags = Tag::where('deleted', 0)->paginate(10); 
+        return view('admin.blog.tag.edit', compact('tag', 'arts', 'coms','tovalide', 'artovali', 'tags'));
     }
 
     public function crudtagupdate(Request $request, Tag $tag){
-        $request->validate([  "newcatname" => "required" ]); 
+        $request->validate([  "newtagname" => "required" ]); 
 
         $tag->nom = $request->newtagname; 
         $tag->save(); 
-        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien modifée');
+        return redirect()->route('admin.blog.tag')->with('success', 'tag bien modifée');
     }
 
     public function crudtagdestroy(Tag $tag){
         $tag->deleted = 1; 
         $tag->save(); 
-        return redirect()->route('admin.blog.tag')->with('success', 'Catégorie bien suprrimée');
+        return redirect()->route('admin.blog.tag')->with('success', 'tag bien suprrimée');
     }
 
     //end tag (blog)
