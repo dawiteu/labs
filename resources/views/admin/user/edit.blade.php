@@ -61,22 +61,29 @@
                                 </div>
                             </div>
 
-                            @Admin
-                            {{-- form Role user  --}}
-                            <div class="w-full md:w-3/6 flex flex-wrap">
-                                <div class="col w-3/6  flex justify-center items-center">
-                                    <label for="role">Role:</label> 
+                            @Webmaster
+                                {{-- form Role user  --}}
+                                <div class="w-full md:w-3/6 flex flex-wrap"> 
+                                    @if (Auth::user()->role_id < $user->role_id  && !( ($user->role_id == 2) && (Auth::user()->role_id == 2)))
+                                        <div class="col w-3/6  flex justify-center items-center">
+                                            <label for="role">Role:</label> 
+                                        </div>
+                                        <div class="col w-3/6 flex justify-center items-center">
+                                            <select name="role" class="w-full" >
+                                                @foreach ($roles->reverse() as $role) {{-- on fait un reverse pour que membre soit premier --}}
+                                                    
+                                                @if (Auth::user()->role_id <= $role->id)
+                                                    <option value="{{$role->id}}" {{ $role->id == $user->role_id ? 'selected' : ''}}>{{$role->nom}}</option> 
+                                                    
+                                                @endif
+                                                
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                    {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
                                 </div>
-                                <div class="col w-3/6 flex justify-center items-center">
-                                    <select name="role" class="w-full" >
-                                        @foreach ($roles->reverse() as $role) {{-- on fait un reverse pour que membre soit premier --}}
-                                            <option value="{{$role->id}}" {{ $role->id == $user->role_id ? 'selected' : ''}}>{{$role->nom}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
-                            </div>
-
+                            
                             {{-- form Poste user  --}}
                             
                             <div class="w-full md:w-3/6 flex flex-wrap">
@@ -92,7 +99,8 @@
                                 </div>
                                 {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
                             </div>
-                            @endAdmin
+                            
+                            @endWebmaster
 
                             {{-- Image  --}}
                             <div class="w-full md:w-3/6 flex flex-wrap mt-2">
@@ -129,12 +137,8 @@
                             <div class="w-full md:w-3/6 flex flex-wrap mt-2">
                                 <div class="col w-3/6  flex justify-center items-center">
                                     <label for="deact" class="md:m-10">Deactivez le compte:</label>  
-                                
                                 </div>
                                 <div class="col w-3/6 flex flex-col text-center justify-center items-center">
-                                    <span class="strong">il va falloir de nouveau l'activer avec l'email. <br/> 
-                                        Un nouveau token vous sera envoyé 
-                                    </span>
                                     <select name="deact">
                                         <option value="1">NON</option>
                                         <option value="0">Oui</option>

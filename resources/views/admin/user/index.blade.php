@@ -6,7 +6,7 @@
                     <h3 class="text-xl m-4 text-center md:text-left">
                         Liste de tous les membres <br/>
                         {{-- {{ dd( request()->is('admin/user/*')  ? 'oui' : 'non' ) }} --}}
-                        @Admin
+                        @Webmaster
                             <div class="flex flex-wrap justify-center md:justify-start">
                                 <a href="{{route('user.create')}}" class="bg-green-400 hover:bg-green-200 m-2 p-1 rounded-sm">Ajouter un membre</a>
 
@@ -14,12 +14,11 @@
                             </div> 
                             <fieldset class="w-full md:w-3/6 border-gray-400 bg-gray-200 p-3 my-5 text-left rounded">
                                 <legend class="underline">!! Notes importante:</legend>
-                                <p><button readonly class="bg-purple-500 p-1 m-1  rounded">A</button> -  Change le status de l'activation</p>
                                 <p><button class="bg-green-500 p-1 m-1  rounded">S</button> - Regarde le profil en détails </p>
                                 <p><button class="bg-yellow-500 p-1 m-1  rounded" title="">M</button> - Modifie le profil</p>
                                 <p><button class="bg-red-500 p-1 m-1  rounded" title="">X</button> - Supprime le profil</p>
                             </fieldset> 
-                        @endAdmin  
+                        @Webmaster  
                     </h3> 
                     
                     <table class="tableusers">
@@ -33,9 +32,9 @@
                             <td class="hidden md:table-cell">Poste</td>
                             <td>Activé</td>
                             <td class="hidden xl:table-cell">Description</td>
-                            @Admin
+                            @Webmaster
                             <td>Action</td>
-                            @endAdmin
+                            @Webmaster
                         </tr>
 
                         @foreach ($users as $user)
@@ -49,12 +48,8 @@
                                 <td class="hidden md:table-cell">{{ $user->poste->nom }}</td>
                                 <td>{{ $user->active == '1' ? 'oui' : 'non' }}</td>
                                 <td class="hidden xl:table-cell">{{ $user->description }} </td>
-                                @Admin
-                                <td> 
-                                    @if ((Auth::user()->role_id == 1) && (Auth::user()->id != $user->id))
-                                        <button class="bg-purple-500 p-1 hover:bg-purple-300 rounded" title="change le status de l'activation">A</button>
-                                    @endif 
-
+                                @Webmaster
+                                <td>
                                     <a href="{{route('user.show', $user->id)}}">
                                         <button class="bg-green-500 p-1 hover:bg-green-300 rounded" title="Regarde le profil en détails">S</button>
                                     </a>
@@ -65,7 +60,7 @@
                                         <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime le profil">X</button> 
                                     @endif 
                                 </td>
-                                @endAdmin
+                                @Webmaster
                             </tr>
                         @endforeach
                     </table>
