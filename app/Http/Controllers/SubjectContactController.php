@@ -41,5 +41,7 @@ class SubjectContactController extends Controller
 
     public function destroy(SubjectContact $sujet){
         $sujet->deleted = 1; 
+        $sujet->save();
+        return redirect()->route('subject.index')->with('success','Sujet bien supprimé'); 
     }
 }

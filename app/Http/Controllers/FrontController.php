@@ -24,7 +24,7 @@ class FrontController extends Controller
 {
     public function footer(){ 
         $footinfo = Pagecontact::all()->first(); 
-        $subjects = SubjectContact::all(); 
+        $subjects = SubjectContact::where('deleted', 0)->get(); 
         return view('components.front.footer', compact('footinfo', 'subjects')); 
     }
 
