@@ -60,7 +60,11 @@
             
             {{ __('Gestion des pages (front) ') }}
         </x-nav-link>
-        
+
+        <x-nav-link :href="route('subject.index')" :active="request()->is('admin/sujets/*')"> 
+            
+            {{ __('Gestion des Sujets Contact') }}
+        </x-nav-link>
     @endWebmaster
     @Redacteur
         <x-nav-link :href="route('admin.blog.index')" :active="request()->is('admin/blog/*')"> 

@@ -20,9 +20,9 @@
 
                     <div class="w-full flex md:flex-row flex-col justify-center">
                         <div class="col m-1 w-full">
-                            <form action="{{route('subject.store')}}" method="POST" class="text-center">
+                            <form action="{{route('subject.update', $sujet)}}" method="POST" class="text-center">
                                 @csrf
-                                <input type="text" name="sujtitre" value="{{old('sujtitre')}}" />
+                                <input type="text" name="sujtitre" value="{{$sujet->nom}}" />
                                 <input type="submit" value="Ajouter>>" class="p-2 rounded-sm bg-gray-300" />
                                 <br/> 
                                 @error('sujtitre')

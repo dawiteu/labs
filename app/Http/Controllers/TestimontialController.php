@@ -40,6 +40,34 @@ class TestimontialController extends Controller
         return redirect()->route('testimontial.all')->with('success', 'testimonial  bien ajoutée');
     }
 
+
+    public function edit(Testimontial $testimontial){
+        return view('admin.testimontial.edit', compact('testimontial'));
+    }
+
+    public function update(Request $request, Testimontial $testimontial){
+
+        $request->validate([  
+            "author" => "required",
+            //"authimg" => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],  
+            "description" => "required", 
+            "poste" => "required"
+        ]); 
+
+        $testimontial->author   = $request->author; 
+        //$test->authimg      = $request->author_image;
+        if($request->file('authimg') != NULL){
+            $request->file('authimg')->storePublicly('img/testimontials/','public');
+            $testimontial->author_image = "img/testimontials/". $request->file('authimg')->hashName();
+        } 
+        $testimontial->description  = $request->description; 
+        $testimontial->poste        = $request->poste; 
+
+        $testimontial->save(); 
+
+        return redirect()->route('testimontial.all')->with('success', 'testimonial  bien modifié');
+    }
+
     public function destroy(Testimontial $testimontial){
         $testimontial->disabled = 1; 
         $testimontial->save(); 

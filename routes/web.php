@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PosteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\SubjectContactController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TestimontialController;
 use App\Http\Controllers\UserController;
@@ -115,6 +116,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/front/update/contact', [FrontPageController::class, 'updateContact'])->name('pages.updatecontact');
 
         // sujets contact FROM mail 
+        Route::get('/admin/sujets/', [SubjectContactController::class, 'index'])->name('subject.index'); 
+        // Route::get('/admin/sujets/create', [SubjectContactController::class,'create'])->name('subject.create');
+        Route::post('/admin/sujets/store', [SubjectContactController::class,'store'])->name('subject.store'); 
+        Route::get('/admin/sujets/edit/{sujet}',[SubjectContactController::class,'edit'])->name('subject.edit');
+        Route::post('/admin/sujets/update/{sujet}', [SubjectContactController::class,'update'])->name('subject.update');
+        Route::get('/admin/sujets/delete/{sujet}', [SubjectContactController::class,'destroy'])->name('subject.destroy');
+
 
         // BLOG mais validation (que pour admin)  POSTES 
         Route::get('/admin/blog/v/a/{article}', [BlogController::class,'valideArticle'])->name('admin.blog.validepost');
