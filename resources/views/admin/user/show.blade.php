@@ -11,7 +11,7 @@
                         </div>
                         <div class="w-full md:w-4/6">
                             <div class="w-full">
-
+                                @Webmaster
                                 @if ( $user->active == 0)
                                 <p class="text-center text-red-500 font-bold ">Attention! ce compte n'est pas activé.</p>
                                 @endif
@@ -19,7 +19,7 @@
                                 @if ( $user->deleted == 1)
                                     <p class="text-center text-red-500 font-bold ">Attention! ce compte est bloqué.</p>
                                 @endif
-
+                                @endWebmaster
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Nom:</span> {{ $user->nom }}</p> 
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Prénom: </span>{{ $user->prenom }}</p> 
                                 <p class="text-center md:w-3/6 md:text-left p-1"><span class="underline font-bold">Email: </span>{{ $user->email }}</p> 

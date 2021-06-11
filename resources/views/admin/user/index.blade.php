@@ -59,7 +59,7 @@
                                     <a href="{{route('user.edit', $user->id)}}">
                                         <button class="bg-yellow-500 p-1 hover:bg-yellow-300 rounded" title="Modifie le profil">M</button>
                                     </a>
-                                        @if ((Auth::user()->role_id == 1) && (Auth::user()->id != $user->id))
+                                        @if ( !(Auth::user()->role_id >= $user->role_id) )
                                         <button class="bg-red-500 p-1 hover:bg-red-300 rounded" title="supprime le profil">X</button> 
                                     @endif 
                                 </td>

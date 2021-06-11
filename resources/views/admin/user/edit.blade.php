@@ -134,18 +134,18 @@
 
                             {{-- Deactivation --}}
 
-                            <div class="w-full md:w-3/6 flex flex-wrap mt-2">
+                            {{-- <div class="w-full md:w-3/6 flex flex-wrap mt-2">
                                 <div class="col w-3/6  flex justify-center items-center">
                                     <label for="deact" class="md:m-10">Deactivez le compte:</label>  
                                 </div>
                                 <div class="col w-3/6 flex flex-col text-center justify-center items-center">
                                     <select name="deact">
-                                        <option value="1">NON</option>
-                                        <option value="0">Oui</option>
+                                        <option value="0">NON</option>
+                                        <option value="1">Oui</option>
                                     </select>
                                 </div>
-                                {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> --}}
-                            </div>
+                                {{-- <div class="col w-full text-center bg-red-500">Erreur 100 %</div> 
+                            </div> --}}
 
                             {{-- Submit  --}}
                             <div class="w-full my-8 flex flex-wrap">
