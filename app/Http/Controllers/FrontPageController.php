@@ -127,7 +127,10 @@ class FrontPageController extends Controller
     }
 
     public function storeHomeCar(Request $request){
-        $request->validate([ "desc" => "required" ]); 
+        $request->validate([ 
+            "desc" => "required"
+            "newimg" => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+        ]); 
 
         $item = new Pagehomecarousel(); 
 
