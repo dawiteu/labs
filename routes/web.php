@@ -115,6 +115,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/front/update/services', [FrontPageController::class, 'updateServices'])->name('pages.updateservices');
         Route::post('/admin/front/update/contact', [FrontPageController::class, 'updateContact'])->name('pages.updatecontact');
 
+        Route::post('/admin/front/updatehomecar/{item}', [FrontPageController::class,'updateHomeCar'])->name('pages.updatehomecar');
+        Route::post('/admin/front/storehomecar/', [FrontPageController::class,'storeHomeCar'])->name('pages.storehomecar');
         // sujets contact FROM mail 
         Route::get('/admin/sujets/', [SubjectContactController::class, 'index'])->name('subject.index'); 
         // Route::get('/admin/sujets/create', [SubjectContactController::class,'create'])->name('subject.create');

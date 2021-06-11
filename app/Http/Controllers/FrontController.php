@@ -93,8 +93,8 @@ class FrontController extends Controller
     // front page BLOG 
     public function blog(){ 
         $arts = Article::orderBy('id','desc')->where('deleted', 0)->where('valide', 1)->paginate(3); 
-        $cats = Categorie::all()->random(count(Categorie::all()));
-        $tags = Tag::all(); 
+        $cats = Categorie::where('deleted', 0)->get()->random(count(Categorie::where('deleted', 0)->get()));
+        $tags = Tag::where('deleted', 0)->get(); 
         $footer = $this->footer(); 
         return view('blog', compact('arts','cats','tags','footer')); 
     }

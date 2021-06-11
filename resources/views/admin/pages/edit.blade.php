@@ -159,9 +159,47 @@
                             @break
                             {{-- END SWITCH PAGE HOME  --}}
                         @case("home-car")
+                            {{-- Modificaiton du caorusel de la page home --}}
+                            <h3 class="text-xl m-4 text-center md:text-left"> Edit Carousel home </h3>
+
                             
-                        {{-- Modificaiton du caorusel de la page home --}}
                             
+                                @forelse ($infopage as $item)
+                                    <div class="bg-gray-200 m-2 flex flex-col justify-center">
+                                        <label for="img">Image:</label>
+                                        <img src="{{asset($item->image)}}" alt="{{$item->description}}" style="max-height:400px; width:auto;"/>
+                                        <form action="{{route('pages.updatehomecar', $item)}}" method="POST" enctype="multipart/form-data" class="mt-1 w-full flex flex-col"> 
+                                            @csrf
+                                            <input type="file" name="newimg" />
+                                            <br/>
+                                            <label for="desc">Description:</label>
+                                            <input type="text" name="desc" value="{{$item->description}}"> 
+                                            <br/> 
+                                        
+                                            {{-- <input type="radio" name="prioriry" value="{{$item->priority}}" {{ $item->priority == 1 ? 'checked' : '' }}/> --}}
+
+                                            <input type="submit" value="modif rapide" class="bg-green-400 p-1 rounded-sm w-max mx-auto my-5" />
+                                        </form>
+                                    </div>
+                                @empty
+                                    <p>pas d'images dans le carousel.. ?</p>
+                                @endforelse
+                            
+                                <div class="bg-gray-200 m-2 flex flex-col justify-center">
+                                    <form action="{{route('pages.storehomecar')}}" method="POST" enctype="multipart/form-data" class="mt-1 w-full flex flex-col"> 
+                                        @csrf
+                                        <input type="file" name="newimg" />
+                                        <br/>
+                                        <label for="desc">Description:</label>
+                                        <input type="text" name="desc" value="{{old('desc')}}"> 
+                                        <br/> 
+                                    
+                                        {{-- <input type="radio" name="prioriry" value="{{$item->priority}}" {{ $item->priority == 1 ? 'checked' : '' }}/> --}}
+
+                                        <input type="submit" value="ajout rapide" class="bg-green-400 p-1 rounded-sm w-max mx-auto my-5" />
+                                    </form>
+                                </div>
+
                         @break
                         @case("services")
                             <h3 class="text-xl m-4 text-center md:text-left"> Edit Page services </h3>

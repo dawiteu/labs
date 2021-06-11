@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pagecontact;
 use App\Models\Pagehome;
+use App\Models\Pagehomecarousel;
 use App\Models\Pageservices;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class FrontPageController extends Controller
                 return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'home-car':
-                return view('admin.pages.edit', compact('page'));
+                $infopage = Pagehomecarousel::all(); 
+                return view('admin.pages.edit', compact('page', 'infopage'));
                 break;
             case 'services':
                 $infopage = Pageservices::first();
@@ -110,5 +112,32 @@ class FrontPageController extends Controller
         
         return redirect()->route('pages.index')->with('success', 'Page contact bien actualisée');
 
+    }
+
+    public function updateHomeCar(Request $request, Pagehomecarousel $item){
+        $request->validate([ "desc" => "required" ]); 
+
+        if($request->file('newimg') != NULL){
+            $request->file('newimg')->storePublicly('img/homecarousel/','public');
+            $item->image = "img/homecarousel/". $request->file('newimg')->hashName();
+        }
+        $item->description = $request->desc; 
+        $item->save(); 
+        return redirect()->route('pages.index')->with('success', 'Element ds home car bien actualisée');
+    }
+
+    public function storeHomeCar(Request $request){
+        $request->validate([ "desc" => "required" ]); 
+
+        $item = new Pagehomecarousel(); 
+
+        if($request->file('newimg') != NULL){
+            $request->file('newimg')->storePublicly('img/homecarousel/','public');
+            $item->image = "img/homecarousel/". $request->file('newimg')->hashName();
+        }
+        $item->description = $request->desc; 
+        $item->priority = 0; 
+        $item->save(); 
+        return redirect()->route('pages.index')->with('success', 'Element ds home car bien ajouté');
     }
 }
