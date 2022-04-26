@@ -128,7 +128,7 @@ class FrontPageController extends Controller
 
     public function storeHomeCar(Request $request){
         $request->validate([ 
-            "desc" => "required"
+            "desc" => "required",
             "newimg" => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ]); 
 
